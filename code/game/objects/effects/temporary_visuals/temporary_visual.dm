@@ -11,7 +11,7 @@
 	/// how long to fade away, if null, will disappear instantly.
 	var/fade_time
 
-/obj/effect/temp_visual/Initialize(mapload)
+/obj/effect/temp_visual/Initialize()
 	. = ..()
 	if(randomdir)
 		setDir(pick(GLOB.cardinals))
@@ -35,8 +35,3 @@
 	if(set_dir)
 		setDir(set_dir)
 	. = ..()
-
-/obj/effect/temp_visual/duration_setting/Initialize(mapload, new_duration)
-	if(new_duration)
-		duration = new_duration
-	return ..()

@@ -144,7 +144,7 @@
 	if(dam < 5)
 		return
 
-	var/do_crit = (reduce_crit >= 100) ? FALSE : TRUE
+	var/do_crit = TRUE
 
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
