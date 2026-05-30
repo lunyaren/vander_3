@@ -75,8 +75,7 @@
 							/obj/item/natural/stone = 8,
 							/obj/item/natural/rock = 4,
 							/obj/item/grown/log/tree/stick = 8,
-							/obj/structure/closet/dirthole/closed/loot=0.75,
-							/obj/item/restraints/legcuffs/beartrap/armed/camouflage=0.5)
+							/obj/item/restraints/legcuffs/beartrap/armed/camouflage = 0.5)
 	spawnableTurfs = list()
 	allowed_areas = list(/area/outdoors/basin,
 							/area/outdoors/basin/safe,

@@ -265,7 +265,7 @@
 
 /// Returns a string with the first element of the string capitalized.
 /proc/capitalize(t as text)
-		if(!t || !length(t))
+	if(!t || !length(t))
 		return t
 
 	var/list/bloqueadas = list(
