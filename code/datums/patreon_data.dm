@@ -24,13 +24,8 @@ GLOBAL_LIST_EMPTY(donator_data_by_ckey)
 	if(!owner)
 		return
 	src.owner = owner
-	if(!SSdbcore.IsConnected())
-		owned_rank = NUKIE_RANK ///this is a testing variable
-		return
-
-	fetch_key_and_rank()
-	assign_access_rank()
-	add_to_global_list()
+	owned_rank = ASSISTANT_RANK
+	return
 
 /datum/patreon_data/proc/add_to_global_list()
 	GLOB.donator_data_by_key[owner.key] = access_rank

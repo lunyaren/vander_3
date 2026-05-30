@@ -1,0 +1,19 @@
+{
+    "map_name": "Weirwen Pass",
+    "map_path": "map_files/weirwenpass",
+    "map_file": "weirwenpass.dmm",
+	"immigrant_origin": "Rosewood",
+	"monarch_title": "Count",
+	"monarch_title_f": "Countess",
+	"traits": [
+		{"Up": true, "Turf Weather Effects": true},
+		{"Up": true, "Down": true, "Turf Weather Effects": true},
+		{"Up": true, "Down": true, "Turf Weather Effects": true},
+		{"Up": true, "Down": true, "Turf Weather Effects": true, "Leylines":true},
+		{"Down": true, "Turf Weather Effects": true, "Leylines":true}
+	],
+	"minetype": null,
+	"space_empty_levels": 0,
+	"space_ruin_levels": 0,
+	"custom_area_sound": "sound/misc/stings/RosewoodSting.ogg"
+}

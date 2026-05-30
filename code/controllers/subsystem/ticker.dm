@@ -179,6 +179,42 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
+				
+			//Configuracion para totobot
+			var/webhook_url = CONFIG_GET(string/discord_round_webhook)
+			if(webhook_url)
+				var/message = CONFIG_GET(string/discord_round_message)
+				if(message)
+					var/list/fields = list()
+					if(SSmapping.config?.map_name)
+						fields += list(list("name" = "Mapa", "value" = "`[SSmapping.config.map_name]`", "inline" = TRUE))
+					if(GLOB.master_mode)
+						fields += list(list("name" = "Modo", "value" = "`[GLOB.master_mode]`", "inline" = TRUE))
+
+					var/list/footer = list("text" = "[CONFIG_GET(string/stationname)] • Ronda #[GLOB.round_id]")
+
+					var/list/embed_data = list(
+						"title" = "¡Iniciando Nueva Ronda!",
+						"description" = message,
+						"color" = 0xD22B2B,
+						"fields" = fields,
+						"footer" = footer
+					)
+
+					var/mention = ""
+					var/role_id = CONFIG_GET(string/discord_round_role_id)
+					if(role_id)
+						mention = "<@&[role_id]>"
+
+					var/list/payload = list(
+						"content" = mention,
+						"embeds" = list(embed_data)
+					)
+
+					var/datum/http_request/request = new(RUSTG_HTTP_METHOD_POST, webhook_url, json_encode(payload), list("Content-Type" = "application/json"))
+					request.begin_async()
+			//Fin de la configuracion para totobot
+
 			current_state = GAME_STATE_PREGAME
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
 			fire()

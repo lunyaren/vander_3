@@ -250,6 +250,13 @@
 /turf/closed/wall/mineral/wooddark/slitted
 	icon_state = "slittedwooddark"
 
+/turf/closed/wall/mineral/wooddark/end/OnCrafted(dirin, mob/user)
+	icon_state = "endwooddark"
+
+/turf/closed/wall/mineral/wooddark/slitted/OnCrafted(dirin, mob/user)
+	icon_state = "slittedwooddark"
+
+
 /turf/closed/wall/mineral/wooddark/window
 	name = "dark wood window"
 	icon_state = "subwindow"

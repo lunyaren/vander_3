@@ -74,19 +74,63 @@
 	point_value = -1
 	customization_label = "Choose Language"
 	customization_options = list(
-		/datum/language/elvish,
+		/datum/language/common,
 		/datum/language/dwarvish,
-		/datum/language/deepspeak,
-		/datum/language/zalad,
+		/datum/language/elvish,
+		/datum/language/oldpsydonic,
 		/datum/language/newpsydonic,
+		/datum/language/zalad,
+		/datum/language/celestial,
 		/datum/language/hellspeak,
+		/datum/language/beast,
+		/datum/language/kobold,
+		/datum/language/rousman,
+		/datum/language/thievescant,
 		/datum/language/orcish,
+		/datum/language/deepspeak,
+		/datum/language/undead,
+		/datum/language/halfling,
+		/datum/language/gronnic,
 	)
 
 /datum/quirk/boon/second_language/on_spawn()
 	if(!customization_value || !ispath(customization_value, /datum/language))
 		return
 	if(!(customization_value in customization_options))
+		return
+
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.grant_language(customization_value)
+
+/datum/quirk/boon/third_language
+	name = "Third Language"
+	desc = "You know an additional language."
+	quirk_category = QUIRK_BOON
+	point_value = -2
+	customization_label = "Choose Language"
+	customization_options = list(
+		/datum/language/common,
+		/datum/language/dwarvish,
+		/datum/language/elvish,
+		/datum/language/oldpsydonic,
+		/datum/language/newpsydonic,
+		/datum/language/zalad,
+		/datum/language/celestial,
+		/datum/language/hellspeak,
+		/datum/language/beast,
+		/datum/language/kobold,
+		/datum/language/rousman,
+		/datum/language/thievescant,
+		/datum/language/orcish,
+		/datum/language/deepspeak,
+		/datum/language/undead,
+		/datum/language/halfling,
+		/datum/language/gronnic,
+	)
+
+/datum/quirk/boon/third_language/on_spawn()
+	if(!customization_value || !ispath(customization_value, /datum/language))
 		return
 
 	if(ishuman(owner))

@@ -1403,11 +1403,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 			src << load_resource(sound_path, -1)
 
 /client/proc/is_donator()
-	if(patreon?.has_access(ACCESS_ASSISTANT_RANK))
-		return TRUE
-	if(twitch?.has_access(ACCESS_TWITCH_SUB_TIER_1))
-		return TRUE
-	return FALSE
+	return TRUE
 
 /// This grabs the DPI of the user per their skin
 /client/proc/acquire_dpi()

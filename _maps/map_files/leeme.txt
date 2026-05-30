@@ -1,0 +1,5 @@
+Para todo aquel que quiera adentrarse en la aventura de mapear, dejo esta pequeña guía para quien quiera aprender a sufrir:
+
+-Los ficheros sueltos situados en esta carpeta, sirven para forzar ese mapa, SIEMPRE, sin importar configuración o acciones dentro del servidor.
+
+-Dentro de cada carpeta, se debe encontrar un .dmm (El mapa) + .json (Ajustes del mapa) y esto repetido por sus mapas adicionales (Bog,forest,mountain,etc) + un único .dm (Configuración).

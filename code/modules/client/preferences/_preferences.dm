@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	var/oocpronouns = ""
 	/// the ghost icon this admin ghost will get when becoming an aghost.
 	var/admin_ghost_icon = null
-	var/ui_theme = UI_PREFERENCE_LIGHT_MODE
+	var/ui_theme = UI_PREFERENCE_DARK_MODE
 	var/triumphs = 0
 	var/enable_tips = TRUE
 	var/tip_delay = 500 //tip delay in milliseconds

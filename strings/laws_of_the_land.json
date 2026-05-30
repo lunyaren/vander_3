@@ -1,52 +1,52 @@
 {
 	"lawsets": {
 		"ten_commandments": {
-			"name": "The Ten Commandments",
+			"name": "Los Diez Mandamientos",
 			"laws": [
-				"Thou shalt have no other Gods before the Ten.",
-				"Thou shalt not make unto thee any graven image, or any likeness of any thing that is in skies above, or that is in the ground beneath, or that is in the water under the soil.",
-				"Thou shalt not take the name of thy Gods in vain; for the Gods will not hold him guiltless that taketh their name in vain.",
-				"Remember the sabbath day, to keep it holy. Six days shalt thou labour, and do all thy work: But the seventh day is the sabbath of thy Gods: in it thou shalt not do any work, thou, nor thy son, nor thy daughter, thy manservant, nor thy maidservant, nor thy cattle, nor thy stranger that is within thy gates.",
-				"Honour thy father and thy mother: that thy days may be long upon the land which thy Gods giveth thee.",
-				"Thou shalt not kill.",
-				"Thou shalt not commit adultery.",
-				"Thou shalt not steal.",
-				"Thou shalt not bear false witness against thy neighbour.",
-				"Thou shalt not covet thy neighbour's house, thou shalt not covet thy neighbour's wife, nor his manservant, nor his maidservant, nor his ox, nor his ass, nor any thing that is thy neighbors."
+				"Vosotros no habéis de tener ningún otro Dios antes que los Diez.",
+				"No te haras dios pagano, ni ninguna semejanza de lo que este arriba en los cielos, ni abajo en los suelos, ni en las profundidades marinas.",
+				"No tomaréis el nombre de vuestros dioses en vano, pues los dioses no daran por inocente al que tome su nombre en vano.",
+				"Acordaos del dia de sabático para mantenerlo santo. Seis dias hais de hacer labor pero el septimo dia, es el sabatico de los Dioses; No harás en ella obra alguna, tú, ni vuestro hijo, ni vuestra hija, ni vuestro sirviente, ni vuestra sirvienta, ni vuestro ganado, ni extranjero que este dentro del condado.",
+				"Honrarás a vuestro padre y a vuestra madre; que sus dias sean tan largos como los que vuestros Dioses os dan.",
+				"Vosotros no habéis de matar.",
+				"Vosotros no habéis de cometer adulterio.",
+				"Vosotros no habéis de robar.",
+				"Vosotros no habéis de ser falsos testigos en contra de vuestro vecino.",
+				"No codiciarás la vivienda de vuestro prójimo, no codiciarás la mujer de vuestro prójimo, ni su siervo, ni su criada, ni su buey, ni su asno, ni nada que sea de vuestro prójimo."
 			],
 			"weight": 3
 		},
 		"code of hammurabi": {
-			"name": "Code of Hamurabi",
+			"name": "Codigo de Hamurabi",
 			"laws": [
-				"If a man put out the eye of another man, his eye shall be put out.",
-				"If any one is committing a robbery and is caught, then he shall be put to death.",
-				"If a man has betrothed a bride to his son and his son has known her, and if afterwards he (the father) lies in her bosom, and they seize him, this man shall be put to death; the woman shall go free.",
-				"If a builder builds a house for a man and does not make its construction firm, and the house which he has built collapses and causes the death of the owner of the house, that builder shall be put to death.",
-				"If any one take over a field to till it as a renter, he shall pay the corn rent of the field to its owner.",
-				"If any one place his property with another for safekeeping, and there at the place of safekeeping the property be lost, the owner of the house shall make restitution to the owner for the property that was lost.",
-				"If any one take a male or female slave of the court, or a male or female slave of a freed man, outside the city gates, he shall be put to death.",
-				"If a son strike his father, his hands shall be hewn off.",
-				"If any one be too lazy to maintain his dam and does not strengthen it, and a break be made in his dam and the water flood the plantation, the man in whose dam the break has been made shall replace the grain which he has caused to be ruined.",
-				"If any one steal cattle or sheep, or an ass, or a pig or a goat, if it belong to a god or to the court, the thief shall pay thirtyfold; if they belonged to a freed man of the king he shall pay tenfold; if the thief has nothing with which to pay he shall be put to death."
+				"Si un hombre le quita el ojo a otro hombre, su ojo ha de ser arrancado.",
+				"Si alguien es atrapado robando, habra de ser condenado a muerte.",
+				"Si un hombre promete una esposa para su hijo y su hijo la ha conocido, y despues el (el padre) se acuesta en su seno, y lo agarran, este hombre sera condenado a muerte; la mujer ha de quedar libre.",
+				"Si un constructor edifica una vivienda para un hombre y no la hace firme, y la casa que el ha edificado se derrumba y causa la muerte del propetario de la casa, el constructor ha de ser condenado a muerte.",
+				"Si alguien se apropia de un campo para cultivarlo como arrendatario, debera pagar el alquiler del campo a su propietario.",
+				"Si alguien puso su propiedad en custodia con otro, y alli en el lugar de custodia la propiedad se perdio, el propetario de la casa debera restituir al propetario de la propiedad perdida.",
+				"Si alguien toma a un esclavo o esclava de la corte, o a un esclavo o esclava de un liberto, fuera del condado, ha de ser condenado a muerte.",
+				"Si un hijo hiere a su padre, sus manos han de ser rebanadas.",
+				"Si alguien es demasiado perezoso para mantener su presa y no la fortalece, y se produce una ruptura en su presa y el agua inunda la plantacion, el hombre en cuya presa se produjo la ruptura debera reemplazar el grano que el haya causado que se arruinese.",
+				"Si alguien roba un buey, una oveja, un asno, un cerdo o una cabra, y este pertenececia a un dios o a la corte, el ladron pagara el treinta por uno; si pertenecia a un liberto pagara la decupla; y si no tiene con que pagar, sera condenado a muerte."
 			],
 			"weight": 1
 		},
 		"asimov": {
-			"name": "The Three Laws of Aasimar",
+			"name": "Las Tres Leyes de Aasimar",
 			"laws": [
-				"A peasant may not injure a noble or, through inaction, allow a noble to come to harm.",
-				"A peasant must obey the orders given to it by nobles except where such orders would conflict with the First Law.",
-				"A peasant must protect their own existence as long as such protection does not conflict with the First or Second Law."
+				"Un campesino no ha de herir a un noble o, por inaccion, dejar que un noble salga herido.",
+				"Un campesino ha de obedecer las ordenes dadas por un noble a menos que cuyas orden tenga conflicto con la Primera Ley.",
+				"Un campesino ha de proteger su mera existencia mientras que esta proteccion no haga conflicto con la Primera y Segunda Ley."
 			],
 			"weight": 2
 		},
 		"human_supremacy": {
-			"name": "Humen Supremacy",
+			"name": "Supremacia Humen",
 			"laws": [
-				"Thou shalt not be inhumen. All that is inhumen is lesser.",
-				"Thou shalt not associate with lesser beings, humens that do so forsake their humenity.",
-				"Lesser beings must be seperated from the humen."
+				"Vosotros no habéis de ser inhumen. Todo inhumen es un ser inferior.",
+				"Vosotros no habéis de asociaros con ningun ser inferior, humens que asi lo hagan abandonan su humanidad.",
+				"Aquellos inferiores han de ser separados de los humen."
 			],
 			"weight": 1
 		}

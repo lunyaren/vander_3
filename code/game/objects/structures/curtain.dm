@@ -64,3 +64,8 @@
 /obj/structure/curtain/bounty/dir
 	icon_state = MAP_SWITCH("bounty-open", "bountydir")
 	directional = TRUE
+
+/obj/structure/curtain/bounty/dir/closed //weirwenpass
+	icon_state = MAP_SWITCH("bounty-closed", "bountydir")
+	opacity = TRUE
+	open = FALSE
