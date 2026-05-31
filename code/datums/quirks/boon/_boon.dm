@@ -75,22 +75,13 @@
 	customization_label = "Choose Language"
 	customization_options = list(
 		/datum/language/common,
-		/datum/language/dwarvish,
-		/datum/language/elvish,
-		/datum/language/oldpsydonic,
-		/datum/language/newpsydonic,
-		/datum/language/zalad,
-		/datum/language/celestial,
-		/datum/language/hellspeak,
-		/datum/language/beast,
-		/datum/language/kobold,
-		/datum/language/rousman,
-		/datum/language/thievescant,
-		/datum/language/orcish,
-		/datum/language/deepspeak,
-		/datum/language/undead,
-		/datum/language/halfling,
-		/datum/language/gronnic,
+        /datum/language/dwarvish,
+        /datum/language/elvish,
+        /datum/language/newpsydonic,
+        /datum/language/orcish,
+        /datum/language/hellspeak,
+        /datum/language/deepspeak,
+        /datum/language/zalad,
 	)
 
 /datum/quirk/boon/second_language/on_spawn()
@@ -111,22 +102,13 @@
 	customization_label = "Choose Language"
 	customization_options = list(
 		/datum/language/common,
-		/datum/language/dwarvish,
-		/datum/language/elvish,
-		/datum/language/oldpsydonic,
-		/datum/language/newpsydonic,
-		/datum/language/zalad,
-		/datum/language/celestial,
-		/datum/language/hellspeak,
-		/datum/language/beast,
-		/datum/language/kobold,
-		/datum/language/rousman,
-		/datum/language/thievescant,
-		/datum/language/orcish,
-		/datum/language/deepspeak,
-		/datum/language/undead,
-		/datum/language/halfling,
-		/datum/language/gronnic,
+        /datum/language/dwarvish,
+        /datum/language/elvish,
+        /datum/language/newpsydonic,
+        /datum/language/orcish,
+        /datum/language/hellspeak,
+        /datum/language/deepspeak,
+        /datum/language/zalad,
 	)
 
 /datum/quirk/boon/third_language/on_spawn()
