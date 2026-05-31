@@ -6795,7 +6795,6 @@
 /turf/open/water/bath,
 /area/indoors/town/bath)
 "dhJ" = (
-/obj/structure/closet/dirthole/closed/grave,
 /obj/structure/gravemarker,
 /turf/open/floor/dirt,
 /area/outdoors/exposed/church)
@@ -9939,7 +9938,6 @@
 /turf/closed/wall/mineral/stone/moss,
 /area/outdoors/town/roofs)
 "eIB" = (
-/obj/structure/closet/dirthole/closed/grave,
 /turf/open/floor/dirt,
 /area/outdoors/exposed/church)
 "eID" = (
@@ -30215,7 +30213,6 @@
 /turf/open/water/river,
 /area/outdoors/town)
 "oIW" = (
-/obj/structure/closet/dirthole/closed/grave,
 /turf/open/floor/dirt/road,
 /area/outdoors/exposed/church)
 "oIY" = (
