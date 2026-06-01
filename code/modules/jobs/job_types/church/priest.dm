@@ -322,7 +322,7 @@
 
 	var/static/list/selectableweapon = list(
 		"Solar Visage" = /obj/item/clothing/head/priestmask,
-		"solar visage Mask" = /obj/item/clothing/head/roguehood/priest,
+		"Solar Visage Mask" = /obj/item/clothing/head/roguehood/priest,
 	)
 
 	spawned.select_equippable(player_client, selectableweapon, message = "Choose holy headwear", title = "PRIEST")
