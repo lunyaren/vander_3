@@ -283,7 +283,7 @@
 						initiate(user, target, target_zone, tool, intent, try_to_fail)
 				return FALSE
 			if(crit_success(user, target, target_zone, tool, intent))
-				add_surgery_xp(user)
+				add_surgery_xp(user, tool)
 				play_success_sound(user, target, target_zone, tool)
 				display_roll(user, "CRIT SUCCESS", roll_requirement)
 				if(repeating && can_do_step(user, target, target_zone, tool, intent, try_to_fail))
@@ -300,7 +300,7 @@
 						initiate(user, target, target_zone, tool, intent, try_to_fail)
 				return FALSE
 			if(success(user, target, target_zone, tool, intent))
-				add_surgery_xp(user)
+				add_surgery_xp(user, tool)
 				play_success_sound(user, target, target_zone, tool)
 				display_roll(user, "SUCCESS", roll_requirement)
 				if(repeating && can_do_step(user, target, target_zone, tool, intent, try_to_fail))
@@ -365,8 +365,8 @@
 			best_bonus = bonus
 	return best_bonus
 
-/datum/surgery_step/proc/add_surgery_xp(mob/user)
-	if(!ishuman(user))
+/datum/surgery_step/proc/add_surgery_xp(mob/user, obj/item/tool)
+	if(!ishuman(user) || istype(tool, /obj/item/weapon/surgery/scalpel))
 		return
 	var/mob/living/carbon/human/doctor = user
 	user.mind.add_sleep_experience(/datum/attribute/skill/misc/medicine, GET_MOB_ATTRIBUTE_VALUE(doctor, STAT_INTELLIGENCE) * (skill_min / 3))
