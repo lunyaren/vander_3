@@ -85,7 +85,7 @@
 	prevent_crits = MINOR_CRITICALS
 
 /obj/item/clothing/head/roguehood/priest
-	name = "solar visage"
+	name = "solar visage Mask"
 	desc = "The sanctified headwear of the most devoted. The mask can be removed."
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
 	icon_state = "solar"

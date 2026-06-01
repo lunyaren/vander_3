@@ -104,7 +104,6 @@
 /datum/outfit/priest
 	name = JOB_PRIEST
 	neck = /obj/item/clothing/neck/psycross/silver/divine/astrata
-	head = /obj/item/clothing/head/priestmask
 	shirt = /obj/item/clothing/shirt/undershirt/priest
 	pants = /obj/item/clothing/pants/tights/colored/black
 	shoes = /obj/item/clothing/shoes/shortboots
@@ -317,3 +316,13 @@
 #undef PRIEST_ADD_PENANCE
 #undef PRIEST_REMOVE_PENANCE
 #undef PRIEST_CORONATE
+
+/datum/job/priest/on_roundstart(mob/living/carbon/human/spawned, client/player_client)
+	. = ..()
+
+	var/static/list/selectableweapon = list(
+		"Solar Visage" = /obj/item/clothing/head/priestmask,
+		"solar visage Mask" = /obj/item/clothing/head/roguehood/priest,
+	)
+
+	spawned.select_equippable(player_client, selectableweapon, message = "Choose holy headwear", title = "PRIEST")
