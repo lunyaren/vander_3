@@ -37,7 +37,7 @@
 		else
 			to_chat(user, span_warning("The rack is already occupied!"))
 			return
-	if((user.used_intent.type == /datum/intent/dagger/cut || user.used_intent.type == /datum/intent/sword/cut || user.used_intent.type == /datum/intent/axe/cut) && stored_item)
+	if((user.used_intent.type == /datum/intent/dagger/cut || user.used_intent.type == /datum/intent/sword/cut || user.used_intent.type == /datum/intent/axe/cut) && stored_item && !istype(stored_item, /obj/item/natural/hide/cured))
 		if(anchored)
 			var/skill_level = GET_MOB_SKILL_VALUE_OLD(user, /datum/attribute/skill/craft/tanning)
 			var/work_time = (12 SECONDS - (skill_level * 15))
