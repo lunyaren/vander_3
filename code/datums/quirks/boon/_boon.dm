@@ -74,14 +74,14 @@
 	point_value = -1
 	customization_label = "Choose Language"
 	customization_options = list(
-		/datum/language/common,
-        /datum/language/dwarvish,
-        /datum/language/elvish,
-        /datum/language/newpsydonic,
-        /datum/language/orcish,
-        /datum/language/hellspeak,
-        /datum/language/deepspeak,
-        /datum/language/zalad,
+		/datum/language/elvish,
+		/datum/language/dwarvish,
+		/datum/language/deepspeak,
+		/datum/language/zalad,
+		/datum/language/newpsydonic,
+		/datum/language/hellspeak,
+		/datum/language/orcish,
+		/datum/language/gronnic,
 	)
 
 /datum/quirk/boon/second_language/on_spawn()
@@ -101,14 +101,14 @@
 	point_value = -2
 	customization_label = "Choose Language"
 	customization_options = list(
-		/datum/language/common,
-        /datum/language/dwarvish,
-        /datum/language/elvish,
-        /datum/language/newpsydonic,
-        /datum/language/orcish,
-        /datum/language/hellspeak,
-        /datum/language/deepspeak,
-        /datum/language/zalad,
+		/datum/language/elvish,
+		/datum/language/dwarvish,
+		/datum/language/deepspeak,
+		/datum/language/zalad,
+		/datum/language/newpsydonic,
+		/datum/language/hellspeak,
+		/datum/language/orcish,
+		/datum/language/gronnic,
 	)
 
 /datum/quirk/boon/third_language/on_spawn()
