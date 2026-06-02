@@ -201,6 +201,19 @@
 	icon_state = "hellgrass"
 	neighborlay = "hellgrass"
 
+/turf/open/floor/grass/hell
+	name = "hell grass"
+	desc = "Grass, ominous and instilling uncomfort."
+	icon_state = "hellgrass"
+	neighborlay = "hellgrass"
+
+/turf/open/floor/grass/cerulean
+	name = "cerulean grass"
+	desc = "Grass, oddly blue like most of Velazur's flora."
+	icon = 'icons/Yunque/turf/natural/velazur_grass.dmi'
+	icon_state = "grass_blue"
+	neighborlay = "grass_blueedge"
+
 /*	..................   Snow   ................... */
 
 /turf/open/floor/snow
@@ -865,18 +878,6 @@
 
 /turf/open/floor/tile/masonic/spiral
 	icon_state = "masonicspiral"
-
-/turf/open/floor/tile/masonic/full
-	icon_state = "masonicfull_white"
-
-/turf/open/floor/tile/masonic/full/inverted
-	icon_state = "masonicfull_black"
-
-/turf/open/floor/tile/masonic/arrow
-	icon_state = "masonicarrow"
-
-/turf/open/floor/tile/masonic/arrow/inverted
-	icon_state = "masonicarrow_invert"
 
 /turf/open/floor/tile/brick
 	icon_state = "bricktile"
