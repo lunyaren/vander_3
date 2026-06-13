@@ -180,12 +180,25 @@ GLOBAL_LIST_INIT(RATS_DONT_EAT, typecacheof(list(
 // Meta\Unsorted
 	//#define is__job(job_type) (istype(job_type, /datum/job/)) //template for easy filling in
 	#define is_unassigned_job(job_type) (istype(job_type, /datum/job/unassigned))
+	#define is_townprotector_job(job_type) (is_royalknight_job(job_type) || is_guardsman_job(job_type) || is_lieutenant_job(job_type) || is_men_at_arms_job(job_type) || is_gatemaster_job(job_type) || is_dungeoneer_job(job_type) || is_town_elder_job(job_type) || is_forestwarden_classic_job(job_type) || is_forestguard_classic_job(job_type) || is_caravanguard_job(job_type) || is_captain_job(job_type))
+
 // Nobility
 	#define is_lord_job(job_type) (istype(job_type, /datum/job/lord))
 	#define is_consort_job(job_type) (istype(job_type, /datum/job/consort))
 	#define is_merchant_job(job_type) (istype(job_type, /datum/job/merchant))
 	#define is_steward_job(job_type) (istype(job_type, /datum/job/steward))
+	#define is_captain_job(job_type) (istype(job_type, /datum/job/captain))
 // Garrison
+	#define is_royalknight_job(job_type) (istype(job_type, /datum/job/royalknight))
+	#define is_guardsman_job(job_type) (istype(job_type, /datum/job/guardsman))
+	#define is_lieutenant_job(job_type) (istype(job_type, /datum/job/lieutenant))
+	#define is_men_at_arms_job(job_type) (istype(job_type, /datum/job/men_at_arms))
+	#define is_gatemaster_job(job_type) (istype(job_type, /datum/job/gatemaster))
+	#define is_dungeoneer_job(job_type) (istype(job_type, /datum/job/dungeoneer))
+	#define is_town_elder_job(job_type) (istype(job_type, /datum/job/town_elder))
+	#define is_forestwarden_classic_job(job_type) (istype(job_type, /datum/job/forestwarden_classic))
+	#define is_forestguard_classic_job(job_type) (istype(job_type, /datum/job/forestguard_classic))
+	#define is_caravanguard_job(job_type) (istype(job_type, /datum/job/persistence/caravanguard))
 // Church
 	#define is_priest_job(job_type) (istype(job_type, /datum/job/priest))
 	#define is_monk_job(job_type) (istype(job_type, /datum/job/monk))

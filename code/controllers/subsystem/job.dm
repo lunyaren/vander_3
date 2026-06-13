@@ -686,8 +686,13 @@ SUBSYSTEM_DEF(job)
 		if(is_lord_job(job)) //monarch bonus
 			to_chat(player_client, span_notice("Heavy is the weight of the crown. But you have the resolve to wear it high. In this, you TRIUMPH."))
 			triumphs++
-			if(length(GLOB.clients) < LOWPOP_THRESHOLD) // every 5 players below lowpop racks the monarch another triumph
-				triumphs += ceil((LOWPOP_THRESHOLD - length(GLOB.clients)) / 5)
+			if(length(GLOB.clients) < LOWPOP_THRESHOLD) // every 2 players below lowpop racks the monarch another triumph
+				triumphs += ceil((LOWPOP_THRESHOLD - length(GLOB.clients)) / 2)
+		else if(is_townprotector_job(job)) //garrison bonus
+			to_chat(player_client, span_notice("You stood ready at your post while others still slept. Duty is its own reward. In this, you TRIUMPH."))
+			triumphs++
+			if(length(GLOB.clients) < LOWPOP_THRESHOLD) // every 2 players below lowpop racks the garrison another triumph
+				triumphs += ceil((LOWPOP_THRESHOLD - length(GLOB.clients)) / 3)
 		else
 			to_chat(player_client, span_notice("Rising early, you made sure to eat a hearty meal before starting your dae. A true TRIUMPH!"))
 		player_client.adjust_triumphs(triumphs)

@@ -1252,8 +1252,8 @@
 			alert(usr, "[M] does not have a key.")
 			return
 
-		var/amt2change = input(usr, "How much to modify the Triumphs by? (100 to -100)") as null|num
-		amt2change = clamp(amt2change, -100, 100)
+		var/amt2change = input(usr, "How much to modify the Triumphs by? (10000 to -10000)") as null|num
+		amt2change = clamp(amt2change, -10000, 10000)
 		if(!amt2change)
 			return
 
