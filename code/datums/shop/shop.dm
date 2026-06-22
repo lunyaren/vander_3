@@ -1,5 +1,5 @@
 /datum/config_entry/number/special_rerolls
-	default = 0
+	config_entry_value = 3
 
 /datum/preferences/proc/open_loadout_shop(mob/mob)
 	var/datum/tgui_triumph_shop/ui = new /datum/tgui_triumph_shop(mob.client)
@@ -50,9 +50,6 @@
 		// Achievement check: item must still be unlocked.
 		if(!item.is_unlocked_for(parent))
 			continue
-		// Patreon check: lapsed subs lose patreon-locked items.
-		if((item.loadout_flags & LOADOUT_FLAG_PATREON_LOCKED) && !parent?.patreon?.is_donator())
-			continue
 		clean_owned += path_str
 	owned_loadout_items = clean_owned
 
@@ -65,8 +62,8 @@
 		if(item && (item.loadout_flags & LOADOUT_FLAG_NO_EQUIP))
 			continue
 		clean_equipped += path_str
-	if(length(clean_equipped) > 3)
-		clean_equipped = clean_equipped.Copy(1, 4)
+	if(length(clean_equipped) > MAX_LOADOUT_SLOTS)
+		clean_equipped = clean_equipped.Copy(1, MAX_LOADOUT_SLOTS + 1)
 	equipped_loadout = clean_equipped
 	return TRUE
 
@@ -80,7 +77,7 @@
 
 	var/slot = 1
 	for(var/path_str in player.prefs.equipped_loadout)
-		if(slot > 3)
+		if(slot > MAX_LOADOUT_SLOTS)
 			break
 		var/datum/loadout_item/item = GLOB.loadout_items[text2path(path_str)]
 		if(!item)
@@ -98,7 +95,7 @@
 		slot++
 
 	for(var/path_str in player.prefs.single_round_loadout)
-		if(slot > 3)
+		if(slot > MAX_LOADOUT_SLOTS)
 			break
 		if(path_str in player.prefs.equipped_loadout)
 			continue
@@ -117,9 +114,6 @@
 
 		slot++
 
-	if(!player.is_donator())
-		player.prefs.single_round_loadout = list()
-		player.prefs.single_round_loadout_colors = list()
 	player.prefs.save_preferences()
 	player.prefs.save_character()
 
@@ -165,13 +159,16 @@
 		total_weight += trait.weight
 
 	data["triumph_balance"] = get_triumph_amount(owner.ckey)
-	data["cost_random_special"] = owner.is_donator() ? 0 : TRIUMPH_COST_RANDOM_SPECIAL
-	data["donator"] = owner.is_donator()
+	data["cost_random_special"] = TRIUMPH_COST_RANDOM_SPECIAL
 	data["online_ckeys"] = GLOB.key_list
 
 	// Pending special for next spawn
 	var/pending = owner.prefs.next_special_trait
 	data["pending_special"] = pending ? "[pending]" : null
+	var/rerolls_remaining = 0
+	if(owner.player_details)
+		rerolls_remaining = owner.player_details.rerolls
+	data["special_rerolls_remaining"] = rerolls_remaining
 
 	var/list/tb_cats = list()
 	for(var/cat_key in SStriumphs.central_state_data)
@@ -252,8 +249,6 @@
 			"ui_icon_state" = item.ui_icon_state,
 			"no_rent" = !!(item.loadout_flags & LOADOUT_FLAG_NO_RENT),
 			"no_equip" = !!(item.loadout_flags & LOADOUT_FLAG_NO_EQUIP),
-			"patreon_locked" = !!(item.loadout_flags & LOADOUT_FLAG_PATREON_LOCKED),
-			"donator_free" = !(item.loadout_flags & LOADOUT_FLAG_NO_DONATOR_FREE),
 			"category" = cat
 		))
 	data["categories"] = categories
@@ -275,9 +270,10 @@
 		))
 	data["available_colors"] = colors_list
 
-	// Equipped slots (ordered, always 3 entries)
+	// Equipped slots (ordered, always MAX_LOADOUT_SLOTS entries)
+	data["max_loadout_slots"] = MAX_LOADOUT_SLOTS
 	var/list/slots = list()
-	for(var/i in 1 to 3)
+	for(var/i in 1 to MAX_LOADOUT_SLOTS)
 		var/path_str = (length(owner.prefs.equipped_loadout) >= i) \
 			? owner.prefs.equipped_loadout[i] : null
 		if(path_str)
@@ -318,8 +314,7 @@
 	for(var/trait_type in GLOB.special_traits)
 		var/datum/special_trait/trait = SPECIAL_TRAIT(trait_type)
 		var/expected_rolls = (trait.weight > 0) ? (total_weight / trait.weight) : 999
-		var/patreon_modifier = user.client.is_donator() ? 0.5 : 1
-		var/computed_cost = FLOOR(expected_rolls * TRIUMPH_COST_RANDOM_SPECIAL * trait.cost_modifier * patreon_modifier, 1)
+		var/computed_cost = FLOOR(expected_rolls * TRIUMPH_COST_RANDOM_SPECIAL * trait.cost_modifier, 1)
 		var/eligible = TRUE
 		if(istype(preview, /mob/living/carbon/human))
 			eligible = !!charactet_eligible_for_trait(preview, owner, trait_type)
@@ -331,7 +326,7 @@
 			"weight" = trait.weight,
 			"total_weight" = total_weight,
 			"eligible" = eligible,
-			"cost_random" = owner.is_donator() ? 0 : TRIUMPH_COST_RANDOM_SPECIAL,
+			"cost_random" = TRIUMPH_COST_RANDOM_SPECIAL,
 			"cost_specific" = computed_cost,
 			"is_pending" = (pending == trait_type)
 		))
@@ -599,8 +594,8 @@
 	if(!item.is_unlocked_for(owner))
 		if(item.required_award)
 			to_chat(owner.mob, span_warning("You haven't unlocked the achievement required for [item.name]."))
-		else if(item.loadout_flags & LOADOUT_FLAG_PATREON_LOCKED)
-			to_chat(owner.mob, span_warning("[item.name] requires an active Patreon subscription."))
+		else
+			to_chat(owner.mob, span_warning("You don't meet the requirements for [item.name]."))
 		return FALSE
 	if(item.triumph_cost_permanent > 0)
 		var/balance = get_triumph_amount(owner.ckey)
@@ -635,10 +630,10 @@
 		to_chat(owner.mob, span_warning("You don't meet the requirements for [item.name]."))
 		return FALSE
 	var/used = length(owner.prefs.equipped_loadout) + length(owner.prefs.single_round_loadout)
-	if(used >= 3)
-		to_chat(owner.mob, span_warning("All 3 loadout slots are in use."))
+	if(used >= MAX_LOADOUT_SLOTS)
+		to_chat(owner.mob, span_warning("All [MAX_LOADOUT_SLOTS] loadout slots are in use."))
 		return FALSE
-	if(CEILING(item.triumph_cost_permanent * 0.05, 1) > 0 && !(owner.is_donator() && !(item.loadout_flags & LOADOUT_FLAG_NO_DONATOR_FREE)))
+	if(CEILING(item.triumph_cost_permanent * 0.05, 1) > 0)
 		var/balance = get_triumph_amount(owner.ckey)
 		if(balance < CEILING(item.triumph_cost_permanent * 0.05, 1))
 			to_chat(owner.mob, span_warning("You need [CEILING(item.triumph_cost_permanent * 0.05, 1)] triumphs to rent [item.name]. You have [balance]."))
@@ -646,12 +641,11 @@
 		adjust_triumphs(owner, -CEILING(item.triumph_cost_permanent * 0.05, 1), TRUE, "Triumph Shop: single-round rent [item.name]", FALSE, TRUE)
 		add_abstract_elastic_data(ELASCAT_SHOP, "[item.name] - Rented", 1)
 
-	var/donator_free_use = owner.is_donator() && !(item.loadout_flags & LOADOUT_FLAG_NO_DONATOR_FREE)
 	owner.prefs.single_round_loadout += path_str
 	owner.prefs.save_preferences()
 	owner.prefs.save_character()
-	log_game("TRIUMPH SHOP: [owner.ckey] [donator_free_use ? "trialing" : "rented"] [path_str] [donator_free_use ? "(free, donator)" : "for one round ([CEILING(item.triumph_cost_permanent * 0.05, 1)] triumphs)"].")
-	to_chat(owner.mob, span_notice("[donator_free_use ? "Trying out [item.name] for this round (Patreon perk, no cost)." : "Rented [item.name] for this round."]"))
+	log_game("TRIUMPH SHOP: [owner.ckey] rented [path_str] for one round ([CEILING(item.triumph_cost_permanent * 0.05, 1)] triumphs).")
+	to_chat(owner.mob, span_notice("Rented [item.name] for this round."))
 	return TRUE
 
 /datum/tgui_triumph_shop/proc/handle_equip(path_str)
@@ -664,8 +658,8 @@
 		to_chat(owner.mob, span_warning("[item.name] cannot be equipped as a loadout slot item."))
 		return FALSE
 	var/used = length(owner.prefs.equipped_loadout) + length(owner.prefs.single_round_loadout)
-	if(used >= 3)
-		to_chat(owner.mob, span_warning("All 3 loadout slots are in use."))
+	if(used >= MAX_LOADOUT_SLOTS)
+		to_chat(owner.mob, span_warning("All [MAX_LOADOUT_SLOTS] loadout slots are in use."))
 		return FALSE
 	owner.prefs.equipped_loadout += path_str
 	owner.prefs.save_preferences()
@@ -683,8 +677,7 @@
 		owner.prefs.save_preferences()
 		owner.prefs.save_character()
 		var/datum/loadout_item/item = GLOB.loadout_items[text2path(path_str)]
-		var/donator_free_use = owner.is_donator() && !(item?.loadout_flags & LOADOUT_FLAG_NO_DONATOR_FREE)
-		if(!donator_free_use && CEILING(item?.triumph_cost_permanent * 0.05, 1) > 0)
+		if(CEILING(item?.triumph_cost_permanent * 0.05, 1) > 0)
 			adjust_triumphs(owner, CEILING(item.triumph_cost_permanent * 0.05, 1), TRUE, "Triumph Shop: refund rent [item.name]", FALSE, TRUE)
 		return TRUE
 	return FALSE
@@ -694,7 +687,7 @@
 		to_chat(owner.mob, span_warning("You already have a special trait queued. Clear it first."))
 		return FALSE
 	var/balance = get_triumph_amount(owner.ckey)
-	var/cost = owner.is_donator() ? 0 : TRIUMPH_COST_RANDOM_SPECIAL
+	var/cost = TRIUMPH_COST_RANDOM_SPECIAL
 	if(balance < cost)
 		to_chat(owner.mob, span_warning("You need [cost] triumphs to roll a random special. You have [balance]."))
 		return FALSE
@@ -735,8 +728,7 @@
 		total_weight += special.weight
 	var/datum/special_trait/trait = SPECIAL_TRAIT(trait_type)
 	var/expected_rolls = (trait.weight > 0) ? (total_weight / trait.weight) : 999
-	var/patreon_modifier = owner.is_donator() ? 0.5 : 1
-	var/cost = FLOOR(expected_rolls * TRIUMPH_COST_RANDOM_SPECIAL * trait.cost_modifier * patreon_modifier, 1)
+	var/cost = FLOOR(expected_rolls * TRIUMPH_COST_RANDOM_SPECIAL * trait.cost_modifier, 1)
 	var/balance = get_triumph_amount(owner.ckey)
 	if(balance < cost)
 		to_chat(owner.mob, span_warning("You need [cost] triumphs to pick [trait.name]. You have [balance]."))
@@ -753,14 +745,20 @@
 
 /datum/tgui_triumph_shop/proc/handle_clear_pending_special()
 	if(!owner.prefs.next_special_trait)
+		to_chat(owner.mob, span_warning("You have no pending special trait to clear."))
+		return FALSE
+	if(!owner.player_details)
+		to_chat(owner.mob, span_warning("Unable to clear pending special — player data unavailable."))
 		return FALSE
 	if(owner.player_details.rerolls <= 0)
+		to_chat(owner.mob, span_warning("You have no special rerolls remaining."))
 		return FALSE
 	owner.player_details.rerolls--
 	owner.prefs.next_special_trait = null
 	owner.prefs.save_preferences()
 	owner.prefs.save_character()
-	to_chat(owner.mob, span_notice("Pending special trait cleared. No refund issued."))
+	log_game("TRIUMPH SHOP: [owner.ckey] cleared pending special ([owner.player_details.rerolls] rerolls remaining).")
+	to_chat(owner.mob, span_notice("Pending special trait cleared. No refund issued. ([owner.player_details.rerolls] reroll\s remaining.)"))
 	return TRUE
 
 

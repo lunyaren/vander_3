@@ -489,6 +489,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 		player_details.byond_version = full_version
 		player_details.byond_build = byond_build
 		GLOB.player_details[ckey] = player_details
+		player_details.rerolls = CONFIG_GET(number/special_rerolls)
 
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
