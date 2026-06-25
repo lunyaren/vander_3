@@ -314,7 +314,7 @@
 	for(var/trait_type in GLOB.special_traits)
 		var/datum/special_trait/trait = SPECIAL_TRAIT(trait_type)
 		var/expected_rolls = (trait.weight > 0) ? (total_weight / trait.weight) : 999
-		var/computed_cost = FLOOR(expected_rolls * TRIUMPH_COST_RANDOM_SPECIAL * trait.cost_modifier, 1)
+		var/computed_cost = FLOOR(expected_rolls * TRIUMPH_COST_SPECIFIC_SPECIAL_UNIT * trait.cost_modifier, 1)
 		var/eligible = TRUE
 		if(istype(preview, /mob/living/carbon/human))
 			eligible = !!charactet_eligible_for_trait(preview, owner, trait_type)
@@ -728,7 +728,7 @@
 		total_weight += special.weight
 	var/datum/special_trait/trait = SPECIAL_TRAIT(trait_type)
 	var/expected_rolls = (trait.weight > 0) ? (total_weight / trait.weight) : 999
-	var/cost = FLOOR(expected_rolls * TRIUMPH_COST_RANDOM_SPECIAL * trait.cost_modifier, 1)
+	var/cost = FLOOR(expected_rolls * TRIUMPH_COST_SPECIFIC_SPECIAL_UNIT * trait.cost_modifier, 1)
 	var/balance = get_triumph_amount(owner.ckey)
 	if(balance < cost)
 		to_chat(owner.mob, span_warning("You need [cost] triumphs to pick [trait.name]. You have [balance]."))

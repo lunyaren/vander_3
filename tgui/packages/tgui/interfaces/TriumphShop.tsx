@@ -400,7 +400,7 @@ const LoadoutItemRow = ({
           !noRent &&
           !noEquip && (
             <Button
-              icon="clock"
+              icon='clock'
               disabled={slotsFull || (!free && !canSingle)}
               tooltip={
                 slotsFull
@@ -420,7 +420,7 @@ const LoadoutItemRow = ({
             <Button
               icon="undo"
               color="average"
-              tooltip="Cancel rental and get a refund"
+              tooltip='Cancel rental and get a refund'
               onClick={() => onUnequip(item.path)}
             >
               Cancel
