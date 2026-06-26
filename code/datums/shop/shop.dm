@@ -676,9 +676,6 @@
 		owner.prefs.single_round_loadout -= path_str
 		owner.prefs.save_preferences()
 		owner.prefs.save_character()
-		var/datum/loadout_item/item = GLOB.loadout_items[text2path(path_str)]
-		if(CEILING(item?.triumph_cost_permanent * 0.05, 1) > 0)
-			adjust_triumphs(owner, CEILING(item.triumph_cost_permanent * 0.05, 1), TRUE, "Triumph Shop: refund rent [item.name]", FALSE, TRUE)
 		return TRUE
 	return FALSE
 

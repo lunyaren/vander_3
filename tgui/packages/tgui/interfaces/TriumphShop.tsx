@@ -252,7 +252,7 @@ const EquippedPanel = ({
                       tooltip={
                         !!slot.permanent
                           ? 'Unequip (item stays owned)'
-                          : 'Cancel rental (refunded)'
+                          : 'Cancel rental (no refund)'
                       }
                       onClick={() => onUnequip(slot.path!)}
                     />
@@ -420,7 +420,7 @@ const LoadoutItemRow = ({
             <Button
               icon="undo"
               color="average"
-              tooltip='Cancel rental and get a refund'
+              tooltip='Cancel rental (no refund)'
               onClick={() => onUnequip(item.path)}
             >
               Cancel
