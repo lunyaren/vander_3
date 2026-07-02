@@ -6,6 +6,8 @@
 #define LOADOUT_FLAG_ACHIEVEMENT_LOCKED (1<<3) // requires required_award to be satisfied (replaces checking required_award != null implicitly)
 #define LOADOUT_FLAG_NO_DONATOR_FREE (1<<4)
 
+#define MAX_LOADOUT_SLOTS 4
+
 #define TICKET_TYPE_LOADOUT "loadout"
 #define TICKET_TYPE_SPECIAL "special"
 #define TICKET_TYPE_JOB_BOOST "job_boost"

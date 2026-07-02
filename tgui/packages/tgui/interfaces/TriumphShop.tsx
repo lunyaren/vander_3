@@ -48,8 +48,6 @@ type LoadoutEntry = {
   category: string;
   no_rent: BooleanLike;
   no_equip: BooleanLike;
-  patreon_locked: BooleanLike;
-  donator_free: BooleanLike;
 };
 
 type EquippedSlot = {
@@ -79,9 +77,10 @@ type Data = {
   triumph_balance: number;
   cost_random_special: number;
   pending_special: string | null;
-  donator: BooleanLike;
+  special_rerolls_remaining: number;
   categories: Record<string, LoadoutEntry[]>;
-  equipped_slots: [EquippedSlot, EquippedSlot, EquippedSlot];
+  equipped_slots: EquippedSlot[];
+  max_loadout_slots: number;
   specials: SpecialEntry[];
   available_colors: ColorEntry[];
   /** keyed by TRIUMPH_CAT_* strings */
@@ -253,7 +252,7 @@ const EquippedPanel = ({
                       tooltip={
                         !!slot.permanent
                           ? 'Unequip (item stays owned)'
-                          : 'Cancel rental (refunded)'
+                          : 'Cancel rental (no refund)'
                       }
                       onClick={() => onUnequip(slot.path!)}
                     />
@@ -322,7 +321,7 @@ const LoadoutItemRow = ({
   onEquip,
   onUnequip,
   slotsUsed,
-  donator,
+  maxLoadoutSlots,
 }: {
   item: LoadoutEntry;
   onBuySingle: (path: string) => void;
@@ -330,9 +329,9 @@ const LoadoutItemRow = ({
   onEquip: (path: string) => void;
   onUnequip: (path: string) => void;
   slotsUsed: number;
-  donator: BooleanLike;
+  maxLoadoutSlots: number;
 }) => {
-  const slotsFull = slotsUsed >= 3;
+  const slotsFull = slotsUsed >= maxLoadoutSlots;
   const owned = !!item.owned;
   const equipped = !!item.equipped;
   const rented = !!item.rented;
@@ -342,8 +341,6 @@ const LoadoutItemRow = ({
   const canPerm = !!item.can_afford_perm;
   const noRent = !!item.no_rent;
   const noEquip = !!item.no_equip;
-  const patreonLock = !!item.patreon_locked;
-  const isDonatorFree = !!donator && !!item.donator_free;
 
   return (
     <Stack align="center" mb={1}>
@@ -359,22 +356,17 @@ const LoadoutItemRow = ({
         )}
       </Stack.Item>
       <Stack.Item>
-        {patreonLock && !owned && (
-          <Box color="purple" fontSize="0.8em">
-            Patreon exclusive
-          </Box>
-        )}
         {awardLocked && (
           <Box color="bad" fontSize="0.8em">
             Achievement locked
           </Box>
         )}
-        {!awardLocked && !patreonLock && owned && (
+        {!awardLocked && owned && (
           <Box color="good" fontSize="0.8em">
             {noEquip ? 'Claimed' : 'Owned'}
           </Box>
         )}
-        {!awardLocked && !patreonLock && !owned && rented && (
+        {!awardLocked && !owned && rented && (
           <Box color="average" fontSize="0.8em">
             Rented this round
           </Box>
@@ -405,39 +397,36 @@ const LoadoutItemRow = ({
           {!owned &&
           !rented &&
           !awardLocked &&
-          !patreonLock &&
           !noRent &&
           !noEquip && (
             <Button
-              icon={isDonatorFree ? 'flask' : 'clock'}
-              disabled={slotsFull || (!isDonatorFree && !free && !canSingle)}
+              icon='clock'
+              disabled={slotsFull || (!free && !canSingle)}
               tooltip={
                 slotsFull
                   ? 'All slots full'
-                  : isDonatorFree
-                    ? 'Try this item for one round for free (Patreon perk)'
-                    : free
-                      ? 'Free, use for one round'
-                      : canSingle
-                        ? `Rent for ${item.cost_single} triumphs (one round)`
-                        : `Need ${item.cost_single} triumphs`
+                  : free
+                    ? 'Free, use for one round'
+                    : canSingle
+                      ? `Rent for ${item.cost_single} triumphs (one round)`
+                      : `Need ${item.cost_single} triumphs`
               }
               onClick={() => onBuySingle(item.path)}
             >
-              {isDonatorFree ? 'Try' : free ? 'Use' : `Rent (${item.cost_single})`}
+              {free ? 'Use' : `Rent (${item.cost_single})`}
             </Button>
           )}
           {rented && !noEquip && (
             <Button
               icon="undo"
               color="average"
-              tooltip={isDonatorFree ? 'Remove trial item (no refund)' : 'Cancel rental and get a refund'}
+              tooltip='Cancel rental (no refund)'
               onClick={() => onUnequip(item.path)}
             >
-              {isDonatorFree ? 'Remove' : 'Cancel'}
+              Cancel
             </Button>
           )}
-          {!owned && !awardLocked && !patreonLock && item.cost_permanent > 0 && (
+          {!owned && !awardLocked && item.cost_permanent > 0 && (
             <Button
               icon="lock-open"
               color={canPerm ? 'good' : 'bad'}
@@ -454,7 +443,6 @@ const LoadoutItemRow = ({
           )}
           {!owned &&
             !awardLocked &&
-            !patreonLock &&
             item.cost_permanent === 0 &&
             !rented &&
             free && (
@@ -480,8 +468,8 @@ const LoadoutCategoryView = ({
   onEquip,
   onUnequip,
   slotsUsed,
+  maxLoadoutSlots,
   search,
-  donator,
 }: {
   items: LoadoutEntry[];
   onBuySingle: (path: string) => void;
@@ -489,8 +477,8 @@ const LoadoutCategoryView = ({
   onEquip: (path: string) => void;
   onUnequip: (path: string) => void;
   slotsUsed: number;
+  maxLoadoutSlots: number;
   search: string;
-  donator: BooleanLike;
 }) => {
   const filtered = useMemo(() => {
     if (!search) return items;
@@ -521,7 +509,7 @@ const LoadoutCategoryView = ({
           onEquip={onEquip}
           onUnequip={onUnequip}
           slotsUsed={slotsUsed}
-          donator={donator}
+          maxLoadoutSlots={maxLoadoutSlots}
         />
       ))}
     </Box>
@@ -533,13 +521,13 @@ const CollectionView = ({
   onEquip,
   onUnequip,
   slotsUsed,
-  donator,
+  maxLoadoutSlots,
 }: {
   categories: Record<string, LoadoutEntry[]>;
   onEquip: (path: string) => void;
   onUnequip: (path: string) => void;
   slotsUsed: number;
-  donator: BooleanLike;
+  maxLoadoutSlots: number;
 }) => {
   const items = useMemo(
     () =>
@@ -569,7 +557,7 @@ const CollectionView = ({
           onEquip={onEquip}
           onUnequip={onUnequip}
           slotsUsed={slotsUsed}
-          donator={donator}
+          maxLoadoutSlots={maxLoadoutSlots}
         />
       ))}
     </Box>
@@ -794,18 +782,18 @@ const TraitReel = ({
 const SpecialsTab = ({
   specials,
   pendingSpecial,
+  rerollsRemaining,
   balance,
   costRandom,
-  donator,
   onRollRandom,
   onBuySpecific,
   onClearPending,
 }: {
   specials: SpecialEntry[];
   pendingSpecial: string | null;
+  rerollsRemaining: number;
   balance: number;
   costRandom: number;
-  donator: BooleanLike;
   onRollRandom: () => void;
   onBuySpecific: (path: string) => void;
   onClearPending: () => void;
@@ -820,8 +808,20 @@ const SpecialsTab = ({
   useEffect(() => {
     if (showReel && pendingSpecial && pendingSpecial !== prevPendingRef.current) {
       setLandOnPath(pendingSpecial);
+      prevPendingRef.current = pendingSpecial;
     }
   }, [pendingSpecial, showReel]);
+
+  // If the server rejects a roll, pending won't change — stop the reel.
+  useEffect(() => {
+    if (!showReel || landOnPath) return;
+    const timer = setTimeout(() => {
+      if (showReel && !landOnPath && pendingSpecial === prevPendingRef.current) {
+        setShowReel(false);
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [showReel, landOnPath, pendingSpecial]);
 
   const handleRollClick = () => {
     prevPendingRef.current = pendingSpecial;
@@ -834,6 +834,7 @@ const SpecialsTab = ({
 
   const hasPending = !!pendingSpecial;
   const canAffordRandom = balance >= costRandom;
+  const canClear = rerollsRemaining > 0;
   const pendingTrait = pendingSpecial
     ? specials.find((s) => s.path === pendingSpecial)
     : null;
@@ -841,25 +842,10 @@ const SpecialsTab = ({
   return (
     <Stack vertical fill>
       <Stack.Item>
-        {!!donator ? (
-          <NoticeBox info>
-            <Icon name="heart" mr={1} color="purple" />
-            <Box as="span" bold>
-              Patreon Supporter perk:
-            </Box>{' '}
-            Random rolls are free for you, and specific trait costs are 50% off.
-          </NoticeBox>
-        ) : (
-          <Box color="label" fontSize="0.8em" mb={0.5}>
-            <Icon name="heart" mr={1} color="purple" />
-            Patreon supporters get free random rolls and 50% off specific trait
-            picks.
-          </Box>
-        )}
-      </Stack.Item>
-
-      <Stack.Item>
         <Section title="Next Round Special">
+          <Box color="label" fontSize="0.85em" mb={hasPending || showReel ? 1 : 0}>
+            Rerolls remaining: {rerollsRemaining}
+          </Box>
           {showReel ? (
             <TraitReel
               specials={specials}
@@ -901,7 +887,12 @@ const SpecialsTab = ({
                   <Button
                     icon="times"
                     color="bad"
-                    tooltip="Clear pending special (no refund)"
+                    disabled={!canClear}
+                    tooltip={
+                      canClear
+                        ? 'Clear pending special (uses 1 reroll, no triumph refund)'
+                        : 'No special rerolls remaining'
+                    }
                     onClick={onClearPending}
                   >
                     Clear
@@ -919,15 +910,11 @@ const SpecialsTab = ({
                   tooltip={
                     !canAffordRandom
                       ? `Need ${costRandom} triumphs`
-                      : !!donator
-                        ? 'Roll a random special for free (Patreon perk)'
-                        : `Roll a random special for ${costRandom} triumphs`
+                      : `Roll a random special for ${costRandom} triumphs`
                   }
                   onClick={handleRollClick}
                 >
-                  {!!donator
-                    ? 'Roll Random (Free)'
-                    : `Roll Random (${costRandom})`}
+                  {`Roll Random (${costRandom})`}
                 </Button>
               </Stack.Item>
               <Stack.Item color="label" fontSize="0.85em">
@@ -991,9 +978,7 @@ const SpecialsTab = ({
                           ? 'You already have a special queued, clear it first'
                           : !canAfford
                             ? `Need ${trait.cost_specific} triumphs`
-                            : !!donator
-                              ? `Pick this trait for ${trait.cost_specific} triumphs (50% Patreon discount applied)`
-                              : `Pick this trait for ${trait.cost_specific} triumphs`
+                            : `Pick this trait for ${trait.cost_specific} triumphs`
                     }
                     onClick={() => onBuySpecific(trait.path)}
                   >
@@ -1015,10 +1000,11 @@ export const TriumphShop = () => {
     triumph_balance,
     categories,
     equipped_slots,
+    max_loadout_slots = 4,
     specials,
     pending_special,
     cost_random_special,
-    donator,
+    special_rerolls_remaining = 0,
     available_colors,
     triumph_buy_categories = {},
     active_triumph_buys = [],
@@ -1331,9 +1317,9 @@ export const TriumphShop = () => {
                   <SpecialsTab
                     specials={specials}
                     pendingSpecial={pending_special}
+                    rerollsRemaining={special_rerolls_remaining}
                     balance={triumph_balance}
                     costRandom={cost_random_special}
-                    donator={donator}
                     onRollRandom={handleRollRandom}
                     onBuySpecific={handleBuySpecific}
                     onClearPending={handleClearPending}
@@ -1444,8 +1430,8 @@ export const TriumphShop = () => {
                         onEquip={handleEquip}
                         onUnequip={handleUnequip}
                         slotsUsed={slotsUsed}
+                        maxLoadoutSlots={max_loadout_slots}
                         search={search}
-                        donator={donator}
                       />
                     ) : activeTab === 'Collection' ? (
                       <CollectionView
@@ -1453,7 +1439,7 @@ export const TriumphShop = () => {
                         onEquip={handleEquip}
                         onUnequip={handleUnequip}
                         slotsUsed={slotsUsed}
-                        donator={donator}
+                        maxLoadoutSlots={max_loadout_slots}
                       />
                     ) : (
                       <LoadoutCategoryView
@@ -1463,7 +1449,7 @@ export const TriumphShop = () => {
                         onEquip={handleEquip}
                         onUnequip={handleUnequip}
                         slotsUsed={slotsUsed}
-                        donator={donator}
+                        maxLoadoutSlots={max_loadout_slots}
                         search=""
                       />
                     )}

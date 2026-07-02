@@ -13,10 +13,10 @@
 	base_antags = 1
 	maximum_antags = 2
 	min_players = (LOWPOP_THRESHOLD+5) * READYUP_AVG
-	denominator = (HIGHPOP_THRESHOLD+10) * READYUP_AVG
+	denominator = LOWPOP_THRESHOLD * READYUP_AVG
 
 	earliest_start = 0 SECONDS
-	weight = 10
+	weight = 12
 
 	typepath = /datum/round_event/antagonist/solo/lich
 	antag_datum = /datum/antagonist/lich

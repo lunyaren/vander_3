@@ -66,9 +66,6 @@ GLOBAL_LIST_INIT(loadout_items, init_loadout_items())
 		else if(istype(A, /datum/award/score))
 			if(C.player_details.achievements.get_achievement_status(required_award) <= 0)
 				return FALSE
-	if(loadout_flags & LOADOUT_FLAG_PATREON_LOCKED)
-		if(!C?.patreon?.is_donator())
-			return FALSE
 	return TRUE
 
 /// Returns TRUE if this item is currently owned by the client and all runtime access checks pass.
@@ -78,10 +75,6 @@ GLOBAL_LIST_INIT(loadout_items, init_loadout_items())
         return FALSE
     if(!("[type]" in C.prefs.owned_loadout_items))
         return FALSE
-    // Patreon can lapse after purchase; re-validate at runtime.
-    if(loadout_flags & LOADOUT_FLAG_PATREON_LOCKED)
-        if(!C?.patreon?.is_donator())
-            return FALSE
     return TRUE
 
 /proc/owns_loadout_item(client/client, datum/loadout_item/loadout_item)
