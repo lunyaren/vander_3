@@ -44,7 +44,7 @@ map voyager
 	votable
 endmap
 
-map hispaniard
+map weirwenpass
 	maxplayers 0
 	votable
 endmap
