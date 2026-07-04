@@ -13,8 +13,14 @@ Format:
 	votable (is this map votable)
 endmap
 
-map vanderlin
-	default
+map blueveil
+    default
+    maxplayers 40
+    votable
+endmap
+
+map Vanderlin
+	minplayers 90
 	votable
 endmap
 

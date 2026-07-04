@@ -1500,3 +1500,131 @@
 	AddElement(/datum/element/footstep_override, footstep = FOOTSTEP_CATWALK)
 	var/obj/effect/abstract/shared_particle_holder/steamvent_particle = add_shared_particles(/particles/smoke/cig/big, "steam_vent", pool_size = 4)
 	steamvent_particle.particles.position = generator(GEN_BOX, list(-14, -14), list(14, 14))
+
+// Estatusas Yunque
+
+/obj/structure/fluff/statue/godsnew //Nuevas estatuas de los diez hechas a mano
+	name = "Statue of the ten"
+	desc = ""
+	icon = 'icons/yunque/statues.dmi'
+	icon_state = "tenstatue"
+	max_integrity = 100 // You wanted descructible statues, you'll get them.
+	deconstructible = FALSE
+	density = TRUE
+	blade_dulling = DULLING_BASH
+	SET_BASE_PIXEL(-16, 0)
+
+/obj/structure/fluff/statue/godsnew/astrata
+	name = "Statue of Astrata"
+	desc = "Astrata, the Sun Queen, reigns over light, order, and conquest. She is worshipped and feared in equal measure."
+	icon_state = "astratastatue"
+
+/obj/structure/fluff/statue/godsnew/noc
+	name = "Statue of Noc"
+	desc = "Noc, the Moon Prince, watches over knowledge and magic, guiding dreamers and scholars alike."
+	icon_state = "nocstatue"
+
+/obj/structure/fluff/statue/godsnew/necra
+	name = "Statue of Necra"
+	desc = "Necra, the Undermaiden, shepherds the dead to their final rest beyond the veil."
+	icon_state = "necrastatue"
+
+/obj/structure/fluff/statue/godsnew/pestra
+	name = "Statue of Pestra"
+	desc = "Pestra, the Mistake, embodies disease, medicine, and the endless cycle of life and decay."
+	icon_state = "pestrastatue"
+
+/obj/structure/fluff/statue/godsnew/ravox
+	name = "Statue of Ravox"
+	desc = "Ravox, Justice Incarnate, teaches that courage and righteousness are worth any sacrifice."
+	icon_state = "ravoxstatue"
+
+/obj/structure/fluff/statue/godsnew/malum
+	name = "Statue of Malum"
+	desc = "Malum, the Iron Lord, inspires craftsmen and laborers to create wonders through toil."
+	icon_state = "malumstatue"
+
+/obj/structure/fluff/statue/godsnew/dendor
+	name = "Statue of Dendor"
+	desc = "Dendor, the Treefather, guards the wild places of the world despite his creeping madness."
+	icon_state = "dendorstatue"
+
+/obj/structure/fluff/statue/godsnew/abyssor
+	name = "Statue of Abyssor"
+	desc = "Abyssor, the Sunken God, rules the seas and storms with relentless fury."
+	icon_state = "abyssorstatue"
+
+/obj/structure/fluff/statue/godsnew/xylix
+	name = "Statue of Xylix"
+	desc = "Xylix, the Trickster, delights in freedom, deception, and the chaos of inspiration."
+	icon_state = "xylixstatue"
+
+/obj/structure/fluff/statue/godsnew/eora
+	name = "Statue of Eora"
+	desc = "Eora, the Heart of Psydon, nurtures love, family, and the bonds between souls."
+	icon_state = "eorastatue"
+
+/obj/structure/fluff/statue/godsnew/zizo
+	name = "Statue of Zizo"
+	desc = "Zizo, Queen of Eternal Night, seized divinity through forbidden magic and ruthless ambition."
+	icon_state = "zizostatue"
+
+/obj/structure/fluff/statue/godsnew/graggar
+	name = "Statue of Graggar"
+	desc = "Graggar, the Dark Sini-Star, exalts strength, hatred, and the right of the strong to devour."
+	icon_state = "graggarstatue"
+
+/obj/structure/fluff/statue/godsnew/matthios
+	name = "Statue of Matthios"
+	desc = "Matthios, the King of Thieves, stole his way into legend and beyond mortality."
+	icon_state = "matthiosstatue"
+
+/obj/structure/fluff/statue/godsnew/baotha
+	name = "Statue of Baotha"
+	desc = "Baotha, Queen of Euphoria, preaches joy at any cost and indulgence without remorse."
+	icon_state = "baothastatue"
+
+/obj/structure/fluff/statue/godsnew/stone
+	icon_state = "tenstatuestone"
+
+/obj/structure/fluff/statue/godsnew/astrata/stone
+	icon_state = "astratastatuestone"
+
+/obj/structure/fluff/statue/godsnew/noc/stone
+	icon_state = "nocstatuestone"
+
+/obj/structure/fluff/statue/godsnew/necra/stone
+	icon_state = "necrastatuestone"
+
+/obj/structure/fluff/statue/godsnew/pestra/stone
+	icon_state = "pestrastatuestone"
+
+/obj/structure/fluff/statue/godsnew/ravox/stone
+	icon_state = "ravoxstatuestone"
+
+/obj/structure/fluff/statue/godsnew/malum/stone
+	icon_state = "malumstatuestone"
+
+/obj/structure/fluff/statue/godsnew/dendor/stone
+	icon_state = "dendorstatuestone"
+
+/obj/structure/fluff/statue/godsnew/abyssor/stone
+	icon_state = "abyssorstatuestone"
+
+/obj/structure/fluff/statue/godsnew/xylix/stone
+	icon_state = "xylixstatuestone"
+
+/obj/structure/fluff/statue/godsnew/eora/stone
+	icon_state = "eorastatuestone"
+
+/obj/structure/fluff/statue/godsnew/zizo/stone
+	icon_state = "zizostatuestone"
+
+/obj/structure/fluff/statue/godsnew/graggar/stone
+	icon_state = "graggarstatuestone"
+
+/obj/structure/fluff/statue/godsnew/matthios/stone
+	icon_state = "matthiosstatuestone"
+
+/obj/structure/fluff/statue/godsnew/baotha/stone
+	icon_state = "baothastatuestone"

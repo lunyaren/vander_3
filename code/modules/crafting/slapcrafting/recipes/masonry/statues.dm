@@ -223,6 +223,30 @@
 	name = "female statue (clean lying) (LEGENDARY)"
 	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying
 
+/datum/slapcraft_recipe/masonry/structure/statue/fstatue/cleanlying
+	name = "female statue (clean lying) (LEGENDARY)"
+	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying
+
+/datum/slapcraft_recipe/masonry/structure/statue/fstatue/cleanlying
+	name = "female statue (clean lying) (LEGENDARY)"
+	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying
+
+/datum/slapcraft_recipe/masonry/structure/statue/fstatue/cleanlying
+	name = "female statue (clean lying) (LEGENDARY)"
+	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying
+
+/datum/slapcraft_recipe/masonry/structure/statue/fstatue/cleanlying
+	name = "female statue (clean lying) (LEGENDARY)"
+	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying
+
+/datum/slapcraft_recipe/masonry/structure/statue/fstatue/cleanlying
+	name = "female statue (clean lying) (LEGENDARY)"
+	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying
+
+/datum/slapcraft_recipe/masonry/structure/statue/fstatue/cleanlying
+	name = "female statue (clean lying) (LEGENDARY)"
+	result_type = /obj/structure/fluff/statue/femalestatue/cleanlying	
+
 /datum/slapcraft_recipe/masonry/structure/statue/copper
 	name = "musician statue (LEGENDARY)"
 	steps = list(
@@ -240,3 +264,78 @@
 		)
 	result_type = /obj/structure/fluff/statue/musician
 	craftdiff = 6
+
+// Estatuas yunque
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone
+	name = "Ten"
+	steps = list(
+		/datum/slapcraft_step/structure/carving_block,
+		/datum/slapcraft_step/use_item/masonry/chisel,
+		/datum/slapcraft_step/item/stoneblock,
+		/datum/slapcraft_step/item/stoneblock/second,
+		/datum/slapcraft_step/item/stoneblock/third,
+		/datum/slapcraft_step/use_item/masonry/hammer,
+		/datum/slapcraft_step/use_item/masonry/chisel/second,
+		/datum/slapcraft_step/use_item/masonry/hammer/second,
+		/datum/slapcraft_step/use_item/masonry/hammer/third,
+		/datum/slapcraft_step/use_item/masonry/chisel/third,
+		)
+	result_type = /obj/structure/fluff/statue/godsnew/stone
+	craftdiff = 4
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/astrata
+	name = "Astrata Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/astrata/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/noc
+	name = "Noc Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/noc/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/necra
+	name = "Necra Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/necra/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/pestra
+	name = "Pestra Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/pestra/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/ravox
+	name = "Ravox Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/ravox/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/malum
+	name = "Malum Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/malum/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/dendor
+	name = "Dendor Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/dendor/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/abyssor
+	name = "Abyssor Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/abyssor/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/xylix
+	name = "Xylix Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/xylix/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/eora
+	name = "Eora Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/eora/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/zizo
+	name = "Zizo Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/zizo/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/graggar
+	name = "Graggar Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/graggar/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/matthios
+	name = "Matthios Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/matthios/stone
+
+/datum/slapcraft_recipe/masonry/structure/statue/godnew/stone/baotha
+	name = "Baotha Statue"
+	result_type = /obj/structure/fluff/statue/godsnew/baotha/stone
