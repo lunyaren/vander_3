@@ -1,0 +1,10 @@
+{
+    "map_name": "Bellmourne Outlands",
+    "map_path": "map_files/blueveil",
+    "map_file": "blueveil_outlands.dmm",
+	"traits": [
+        {"Up": true, "Leylines": true},
+        {"Up": true, "Down": true, "Leylines": true},
+        {"Down": true, "Leylines": true}
+    ]
+}

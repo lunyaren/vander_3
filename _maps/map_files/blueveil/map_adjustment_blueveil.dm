@@ -4,9 +4,8 @@
 	These 'map_adjustment.dm' files shouldn't be included in 'dme'
 */
 
-/datum/map_adjustment/daftmarsh
+/datum/map_adjustment/blueveil
 	map_file_name = "blueveil.dmm"
-	// Disabled for Daftmarsh.
 	blacklist = list(
 	)
 	// Limited positions to ensure core roles are filled.
