@@ -1437,20 +1437,16 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			handle_customizer_topic(user, href_list)
 			update_menu_data(user)
 			ShowCustomizers(user)
-			return
 		if("change_marking")
 			handle_body_markings_topic(user, href_list)
 			update_menu_data(user)
 			ShowMarkings(user)
-			return
 		if("change_descriptor")
 			handle_descriptors_topic(user, href_list)
 			show_descriptors_ui(user)
-			return
 		if("change_culinary_preferences")
 			handle_culinary_topic(user, href_list)
 			show_culinary_ui(user)
-			return
 		if("random")
 			switch(href_list["preference"])
 				if("name")
@@ -1464,7 +1460,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 					random_species()
 				if("all")
 					apply_character_randomization_prefs()
-			return
 
 		if("loadout_store")
 			open_loadout_shop(user)
@@ -1499,7 +1494,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			if(isnewplayer(user))
 				var/mob/dead/new_player/player = user
 				player.cache_multi_ready_characters()
-			return
 
 		if("load")
 			load_preferences()
@@ -1507,7 +1501,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			if(isnewplayer(user))
 				var/mob/dead/new_player/player = user
 				player.cache_multi_ready_characters()
-			return
 
 		if("changeslot")
 			write_preference(/datum/preference/choiced/selected_accent, ACCENT_DEFAULT)
@@ -1528,7 +1521,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 				if(!load_character(choice))
 					randomise_appearance_prefs()
 					save_character()
-			return
 
 		if("randomiseappearanceprefs")
 			randomise_appearance_prefs()
@@ -1537,7 +1529,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			reset_all_customizer_accessory_colors()
 			randomize_all_customizer_accessories()
 			reset_jobs(user)
-			return
 
 		if("ooc_preview")
 			var/list/dat = list()
