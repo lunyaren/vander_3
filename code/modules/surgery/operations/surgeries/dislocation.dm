@@ -11,8 +11,8 @@
 
 	time = 5 SECONDS
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_JOURNEYMAN
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_APPRENTICE
 
 /datum/surgery_operation/limb/relocation/get_default_radial_image()
 	return image(/obj/item/weapon/surgery/bonesetter)
