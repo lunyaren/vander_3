@@ -8,8 +8,8 @@
 
 	time = 3 SECONDS
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_JOURNEYMAN
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_APPRENTICE
 
 	var/required_replacement = BODYPART_ORGANIC
 
