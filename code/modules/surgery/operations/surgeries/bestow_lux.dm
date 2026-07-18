@@ -9,8 +9,8 @@
 
 	time = 10 SECONDS
 
-	skill_min = SKILL_LEVEL_EXPERT
-	skill_median = SKILL_LEVEL_MASTER
+	skill_min = SKILL_LEVEL_JOURNEYMAN
+	skill_median = SKILL_LEVEL_EXPERT
 
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'

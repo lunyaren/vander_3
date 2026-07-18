@@ -10,8 +10,8 @@
 
 	time = 6.4 SECONDS
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_JOURNEYMAN
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_APPRENTICE
 
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_required = SURGERY_BONE_SAWED

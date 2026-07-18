@@ -11,8 +11,8 @@
 
 	time = 6.4 SECONDS
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_EXPERT
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_JOURNEYMAN
 
 	operation_flags = OPERATION_NOTABLE
 

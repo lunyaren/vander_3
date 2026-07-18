@@ -10,7 +10,7 @@
 	reach = 2
 	misscost = 7
 	icon_state = "inlash"
-	canparry = FALSE //Has reach and can't be parried, but needs to be charged and punishes misses.
+	canparry = TRUE //Has reach; needs to be charged and punishes misses.
 	item_damage_type = "slash"
 	acc_bonus = 10
 
@@ -42,7 +42,7 @@
 	reach = 2
 	misscost = 7
 	icon_state = "incut"
-	canparry = FALSE
+	canparry = TRUE
 	item_damage_type = "slash"
 
 // WHIP CRACK INTENTS //

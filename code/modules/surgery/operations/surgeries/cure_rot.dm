@@ -4,7 +4,6 @@
 
 	implements = list(
 		TOOL_CAUTERY = 1,
-		/obj/item/clothing/neck/psycross/silver = 1.4,
 		/obj/item = 1.55,
 	)
 
@@ -13,7 +12,7 @@
 	preop_sound = 'sound/surgery/cautery1.ogg'
 	success_sound = 'sound/surgery/cautery2.ogg'
 
-	skill_min = SKILL_LEVEL_APPRENTICE
+	skill_min = SKILL_LEVEL_NOVICE
 
 	all_surgery_states_required = SURGERY_SKIN_OPEN|SURGERY_VESSELS_CLAMPED
 
@@ -47,10 +46,7 @@
 	return FALSE
 
 /datum/surgery_operation/basic/cure_rot/tool_check(obj/item/tool)
-	if(!istype(tool, /obj/item/clothing/neck/psycross) && !tool.get_temperature())
-		return FALSE
-
-	return TRUE
+	return tool.get_temperature() > 0
 
 /datum/surgery_operation/basic/cure_rot/on_preop(mob/living/patient, mob/living/surgeon, tool, list/operation_args)
 	display_results(

@@ -11,8 +11,8 @@
 
 	target_zone = BODY_ZONE_PRECISE_MOUTH
 
-	skill_min = SKILL_LEVEL_EXPERT
-	skill_median = SKILL_LEVEL_MASTER
+	skill_min = SKILL_LEVEL_JOURNEYMAN
+	skill_median = SKILL_LEVEL_EXPERT
 
 	any_surgery_states_blocked = SURGERY_SKIN_OPEN
 
