@@ -48,6 +48,7 @@ type LoadoutEntry = {
   category: string;
   no_rent: BooleanLike;
   no_equip: BooleanLike;
+  giveaway_only: BooleanLike;
 };
 
 type EquippedSlot = {
@@ -341,6 +342,7 @@ const LoadoutItemRow = ({
   const canPerm = !!item.can_afford_perm;
   const noRent = !!item.no_rent;
   const noEquip = !!item.no_equip;
+  const giveawayLocked = !!item.giveaway_only;
 
   return (
     <Stack align="center" mb={1}>
@@ -356,6 +358,11 @@ const LoadoutItemRow = ({
         )}
       </Stack.Item>
       <Stack.Item>
+         {giveawayLocked && !owned && (
+          <Box color="purple" fontSize="0.8em">
+            Giveaway exclusive
+          </Box>
+        )}
         {awardLocked && (
           <Box color="bad" fontSize="0.8em">
             Achievement locked
@@ -366,7 +373,7 @@ const LoadoutItemRow = ({
             {noEquip ? 'Claimed' : 'Owned'}
           </Box>
         )}
-        {!awardLocked && !owned && rented && (
+        {!awardLocked && !giveawayLocked && !owned && rented && (
           <Box color="average" fontSize="0.8em">
             Rented this round
           </Box>
@@ -397,6 +404,7 @@ const LoadoutItemRow = ({
           {!owned &&
           !rented &&
           !awardLocked &&
+          !giveawayLocked &&
           !noRent &&
           !noEquip && (
             <Button
@@ -426,7 +434,7 @@ const LoadoutItemRow = ({
               Cancel
             </Button>
           )}
-          {!owned && !awardLocked && item.cost_permanent > 0 && (
+          {!owned && !awardLocked && !giveawayLocked && item.cost_permanent > 0 && (
             <Button
               icon="lock-open"
               color={canPerm ? 'good' : 'bad'}
@@ -443,6 +451,7 @@ const LoadoutItemRow = ({
           )}
           {!owned &&
             !awardLocked &&
+            !giveawayLocked &&
             item.cost_permanent === 0 &&
             !rented &&
             free && (

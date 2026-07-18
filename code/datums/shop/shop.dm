@@ -253,6 +253,7 @@
 			"ui_icon_state" = item.ui_icon_state,
 			"no_rent" = !!(item.loadout_flags & LOADOUT_FLAG_NO_RENT),
 			"no_equip" = !!(item.loadout_flags & LOADOUT_FLAG_NO_EQUIP),
+			"giveaway_only" = !!(item.loadout_flags & LOADOUT_FLAG_GIVEAWAY_ONLY),
 			"category" = cat
 		))
 	data["categories"] = categories
@@ -595,6 +596,9 @@
 		return FALSE
 	if(path_str in owner.prefs.owned_loadout_items)
 		return FALSE
+	if(item.loadout_flags & LOADOUT_FLAG_GIVEAWAY_ONLY)
+		to_chat(owner.mob, span_warning("[item.name] cannot be purchased. It can only be obtained through a giveaway."))
+		return FALSE
 	if(!item.is_unlocked_for(owner))
 		if(item.required_award)
 			to_chat(owner.mob, span_warning("You haven't unlocked the achievement required for [item.name]."))
@@ -625,6 +629,9 @@
 		return FALSE
 	if(item.loadout_flags & LOADOUT_FLAG_NO_EQUIP)
 		to_chat(owner.mob, span_warning("[item.name] cannot be equipped as a loadout item."))
+		return FALSE
+	if(item.loadout_flags & LOADOUT_FLAG_GIVEAWAY_ONLY)
+		to_chat(owner.mob, span_warning("[item.name] cannot be purchased. It can only be obtained through a giveaway."))
 		return FALSE
 	if(path_str in owner.prefs.owned_loadout_items)
 		return FALSE
