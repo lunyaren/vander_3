@@ -175,4 +175,4 @@
     name = "Cload Cutter's Cloak"
     item_path = /obj/item/clothing/cloak/eastcloak1
     ui_category = "Cloaks"
-    triumph_cost_permament = 50
+    triumph_cost_permanent = 50
