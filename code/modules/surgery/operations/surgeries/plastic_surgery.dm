@@ -11,8 +11,8 @@
 
 	time = 6.4 SECONDS
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_EXPERT
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_JOURNEYMAN
 
 	operation_flags = OPERATION_NOTABLE
 
@@ -25,7 +25,8 @@
 	return image(/obj/item/weapon/surgery/scalpel)
 
 /datum/surgery_operation/limb/plastic_surgery/all_required_strings()
-	return list("operate on head (target head)") + ..()
+	. = ..()
+	. += "operate on head (target head)"
 
 /datum/surgery_operation/limb/plastic_surgery/state_check(obj/item/bodypart/limb)
 	return limb.body_zone == BODY_ZONE_HEAD

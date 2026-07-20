@@ -572,7 +572,7 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 	<a href='?_src_=prefs;preference=ooc_extra;task=input'><div class="sprite ooc-extra"></div></a>
 	<a href='?_src_=prefs;preference=antag;task=menu'><div class="sprite btn-roles"></div></a>
 	<a href='?_src_=prefs;preference=customizers;task=menu'><div class="sprite f-btn"></div></a>
-	<a href='?_src_=prefs;preference=randomiseappearanceprefs;'><div class="sprite f-random"></div></a>
+	<a href='?_src_=prefs;task=randomiseappearanceprefs;'><div class="sprite f-random"></div></a>
 
 	<div class="sprite features-bg"><div id="silhouette" class="sprite" style="background-image: url('features_bodytype_[read_preference(/datum/preference/choiced/gender) == MALE ? "m" : "f"].png');"></div></div>
 
@@ -1437,20 +1437,16 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			handle_customizer_topic(user, href_list)
 			update_menu_data(user)
 			ShowCustomizers(user)
-			return
 		if("change_marking")
 			handle_body_markings_topic(user, href_list)
 			update_menu_data(user)
 			ShowMarkings(user)
-			return
 		if("change_descriptor")
 			handle_descriptors_topic(user, href_list)
 			show_descriptors_ui(user)
-			return
 		if("change_culinary_preferences")
 			handle_culinary_topic(user, href_list)
 			show_culinary_ui(user)
-			return
 		if("random")
 			switch(href_list["preference"])
 				if("name")
@@ -1464,7 +1460,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 					random_species()
 				if("all")
 					apply_character_randomization_prefs()
-			return
 
 		if("loadout_store")
 			open_loadout_shop(user)
@@ -1499,7 +1494,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			if(isnewplayer(user))
 				var/mob/dead/new_player/player = user
 				player.cache_multi_ready_characters()
-			return
 
 		if("load")
 			load_preferences()
@@ -1507,7 +1501,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			if(isnewplayer(user))
 				var/mob/dead/new_player/player = user
 				player.cache_multi_ready_characters()
-			return
 
 		if("changeslot")
 			write_preference(/datum/preference/choiced/selected_accent, ACCENT_DEFAULT)
@@ -1528,7 +1521,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 				if(!load_character(choice))
 					randomise_appearance_prefs()
 					save_character()
-			return
 
 		if("randomiseappearanceprefs")
 			randomise_appearance_prefs()
@@ -1537,7 +1529,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 			reset_all_customizer_accessory_colors()
 			randomize_all_customizer_accessories()
 			reset_jobs(user)
-			return
 
 		if("ooc_preview")
 			var/list/dat = list()
@@ -1810,25 +1801,6 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 
 	return TRUE
 
-
-/datum/preferences/proc/set_loadout(mob/user, loadout_number, datum/loadout_item/loadout)
-	if(!loadout)
-		return
-	if(!donator)
-		to_chat(user, span_danger("This is a donator feature!"))
-		return FALSE
-
-	if(loadout == "None")
-		vars["loadout[loadout]"] = null
-		to_chat(user, span_notice("Who needs stuff anyway?"))
-	else
-		if(!(loadout in GLOB.loadout_items))
-			return
-		vars["loadout[loadout_number]"] = loadout
-		to_chat(user, span_notice("[loadout.name]"))
-		if(loadout.description)
-			to_chat(user, "[loadout.description]")
-
 /datum/preferences/proc/get_job_lock_html(datum/job/job, mob/user, used_name)
 	var/player_species = user.client.prefs.pref_species.id_override || user.client.prefs.pref_species.id
 	var/fails_allowed = length(job.allowed_races) && !job.prefs_species_check(src)
@@ -1891,6 +1863,13 @@ GLOBAL_LIST_INIT(name_adjustments, list())
 		)
 
 	var/datum/patron/patron = user.client.prefs.read_preference(/datum/preference/choiced/patron)
+	if(job.tennite_triumph_exclusive && !(patron.type in UNDIVIDED_TEMPLE_PATRONS))
+		if(!user.client.has_triumph_buy(TRIUMPH_BUY_HERETIC_NOBLE))
+			return make_lock_row(
+				used_name,
+				"\[HERETIC LOCK\]",
+				"<b>Only The Ten may rule.</b>"
+			)
 	if(length(job.allowed_patrons) && !(patron.type in job.allowed_patrons))
 		var/list/patron_list = list()
 		for(var/datum/patron/mult_patron as anything in job.allowed_patrons)

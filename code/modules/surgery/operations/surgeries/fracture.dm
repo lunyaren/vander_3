@@ -10,8 +10,8 @@
 
 	time = 6.4 SECONDS
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_JOURNEYMAN
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_APPRENTICE
 
 	all_surgery_states_required = SURGERY_SKIN_OPEN
 	any_surgery_states_required = SURGERY_BONE_SAWED
@@ -20,7 +20,9 @@
 	return image(/obj/item/weapon/surgery/bonesetter)
 
 /datum/surgery_operation/limb/fix_bones/all_required_strings()
-	return ..() + list("the limb must have bones")
+	. = ..()
+	. += "the limb must have bones"
+	. += "the bone must be fractured"
 
 /datum/surgery_operation/limb/fix_bones/state_check(obj/item/bodypart/limb)
 	return LIMB_HAS_BONES(limb) && limb.has_wound(/datum/wound/fracture)

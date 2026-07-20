@@ -2,6 +2,7 @@
 #define TRIUMPH_CAT_CHARACTER "Character"
 
 #define TRIUMPH_BUY_RACE_ALL "race_all"
+#define TRIUMPH_BUY_HERETIC_NOBLE "heretic_noble"
 #define TRIUMPH_BUY_ANY_CLASS "pick_any"
 #define TRIUMPH_BUY_ADOPTION "adoption"
 #define TRIUMPH_BUY_FART "fart"
@@ -68,6 +69,6 @@
 #define TRIUMPH_CAT_ACTIVE_DATUMS "Bought"
 
 /// Cost to roll a random eligible special trait
-#define TRIUMPH_COST_RANDOM_SPECIAL 10
+#define TRIUMPH_COST_RANDOM_SPECIAL 5
 /// Triumph cost per expected roll when picking a specific special (independent of random roll cost)
 #define TRIUMPH_COST_SPECIFIC_SPECIAL_UNIT 0.5

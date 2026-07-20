@@ -37,6 +37,10 @@
 /atom/movable/screen/alert/status_effect/buff/alch/perceptionpot
 	name = "Perception"
 
+/datum/status_effect/buff/alch/intelligencepot/weak
+	effectedstats = list(STAT_INTELLIGENCE = 1)
+	duration = 5 MINUTES
+
 /datum/status_effect/buff/alch/intelligencepot
 	id = "Intelligence Potion"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/alch/intelligencepot
@@ -90,6 +94,10 @@
 	effectedstats = list(STAT_SPEED = 1, STAT_FORTUNE = 1)
 	duration = 5 MINUTES
 
+/datum/status_effect/buff/alch/speedpot/weak
+	effectedstats = list(STAT_SPEED = 1)
+	duration = 5 MINUTES
+
 /datum/status_effect/buff/alch/speedpot
 	id = "Speed Potion"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/alch/speedpot
@@ -102,6 +110,10 @@
 
 /atom/movable/screen/alert/status_effect/buff/alch/speedpot
 	name = "Speed"
+
+/datum/status_effect/buff/alch/fortunepot/weak
+	effectedstats = list(STAT_FORTUNE = 1)
+	duration = 5 MINUTES
 
 /datum/status_effect/buff/alch/fortunepot
 	id = "Fortune Potion"

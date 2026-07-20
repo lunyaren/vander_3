@@ -11,8 +11,8 @@
 
 	time = 10 SECONDS
 
-	skill_min = SKILL_LEVEL_EXPERT
-	skill_median = SKILL_LEVEL_MASTER
+	skill_min = SKILL_LEVEL_JOURNEYMAN
+	skill_median = SKILL_LEVEL_EXPERT
 
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
@@ -34,6 +34,16 @@
 		return FALSE
 
 	return TRUE
+
+/datum/surgery_operation/basic/revival/all_required_strings()
+	. = ..()
+	. += "the patient must be dead"
+	. += "the patient must have a heart"
+
+/datum/surgery_operation/basic/revival/all_blocked_strings()
+	. = ..()
+	. += "the patient must not be undead"
+	. += "the patient must not be cursed by the undermaiden"
 
 /datum/surgery_operation/basic/revival/state_check(mob/living/patient)
 	if(patient.stat != DEAD)

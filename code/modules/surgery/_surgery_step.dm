@@ -55,7 +55,7 @@
 	/// Necessary skill MINIMUM to perform this surgery step, of skill_used
 	var/skill_min = SKILL_LEVEL_NOVICE
 	/// Skill median used to apply success and speed bonuses
-	var/skill_median = SKILL_LEVEL_JOURNEYMAN
+	var/skill_median = SKILL_LEVEL_APPRENTICE
 
 	/// Requirement threshold for the diceroll as a baseline
 	var/dice_requirement = 25

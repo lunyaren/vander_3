@@ -1685,6 +1685,37 @@
 	craftdiff = 1
 	category = "Tabard"
 
+// Cadwyn Order Tabards
+/datum/repeatable_crafting_recipe/sewing/cadwyn_cloak_astrata
+	name = "bright tabard"
+	output = /obj/item/clothing/cloak/cadwyn/astrata
+	requirements = list(
+		/obj/item/natural/cloth = 2,
+		/obj/item/natural/fibers = 1
+	)
+	craftdiff = 1
+	category = "Tabard"
+
+/datum/repeatable_crafting_recipe/sewing/cadwyn_cloak_necra
+	name = "dark cloak"
+	output = /obj/item/clothing/cloak/cadwyn/necra
+	requirements = list(
+		/obj/item/natural/cloth = 2,
+		/obj/item/natural/fibers = 1
+	)
+	craftdiff = 1
+	category = "Tabard"
+
+/datum/repeatable_crafting_recipe/sewing/cadwyn_cloak_ravox
+	name = "tattered surcoat"
+	output = /obj/item/clothing/cloak/cadwyn/ravox
+	requirements = list(
+		/obj/item/natural/cloth = 2,
+		/obj/item/natural/fibers = 1
+	)
+	craftdiff = 1
+	category = "Tabard"
+
 // Detailed Tabards
 /datum/repeatable_crafting_recipe/sewing/eora_tabard
 	name = "eora tabard"
@@ -1931,12 +1962,7 @@
 		/obj/item/natural/fibers = 2
 	)
 	craftdiff = 2.5
-	skillcraft = /datum/attribute/skill/misc/medicine
 	blacklisted_paths = list(/obj/item/natural/cloth/bandage)
-
-// You do not get medical skill for making bandages
-/datum/repeatable_crafting_recipe/sewing/bandage/add_skill_experience(mob/user)
-	return
 
 /datum/repeatable_crafting_recipe/sewing/barding
 	name = "padded barding (saiga)"

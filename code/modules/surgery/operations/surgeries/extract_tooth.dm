@@ -11,8 +11,8 @@
 
 	target_zone = BODY_ZONE_PRECISE_MOUTH
 
-	skill_min = SKILL_LEVEL_EXPERT
-	skill_median = SKILL_LEVEL_MASTER
+	skill_min = SKILL_LEVEL_JOURNEYMAN
+	skill_median = SKILL_LEVEL_EXPERT
 
 	any_surgery_states_blocked = SURGERY_SKIN_OPEN
 
@@ -23,7 +23,8 @@
 	return image(/obj/item/weapon/tongs)
 
 /datum/surgery_operation/basic/extract_tooth/all_required_strings()
-	return list("patient needs teeth") + ..()
+	. = ..()
+	. += "patient must have teeth"
 
 /datum/surgery_operation/basic/extract_tooth/state_check(mob/living/patient)
 	var/obj/item/bodypart/mouth/mouth = patient.get_bodypart(BODY_ZONE_PRECISE_MOUTH)

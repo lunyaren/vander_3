@@ -20,7 +20,7 @@
 	time = 2.5 SECONDS
 
 	skill_min = SKILL_LEVEL_NOVICE
-	skill_median = SKILL_LEVEL_JOURNEYMAN
+	skill_median = SKILL_LEVEL_APPRENTICE
 
 	success_sound = 'sound/surgery/retractor2.ogg'
 	failure_sound = 'sound/surgery/organ2.ogg'
@@ -40,7 +40,8 @@
 	var/healing_multiplier = 0.07
 
 /datum/surgery_operation/basic/tend_wounds/all_required_strings()
-	return ..() + list("the patient must have brute or burn damage")
+	. = ..()
+	. += "the patient must have brute or burn damage"
 
 /datum/surgery_operation/basic/tend_wounds/state_check(mob/living/patient)
 	if(!iscarbon(patient))
@@ -291,8 +292,8 @@
 
 	time = 1 SECONDS
 
-	skill_min = SKILL_LEVEL_JOURNEYMAN
-	skill_median = SKILL_LEVEL_EXPERT
+	skill_min = SKILL_LEVEL_APPRENTICE
+	skill_median = SKILL_LEVEL_JOURNEYMAN
 
 	can_heal = COMBO_SURGERY
 	healing_amount = 3

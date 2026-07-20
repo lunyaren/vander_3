@@ -11,14 +11,15 @@
 
 	target_zone = BODY_ZONE_PRECISE_MOUTH
 
-	skill_min = SKILL_LEVEL_APPRENTICE
-	skill_median = SKILL_LEVEL_JOURNEYMAN
+	skill_min = SKILL_LEVEL_NOVICE
+	skill_median = SKILL_LEVEL_APPRENTICE
 
 /datum/surgery_operation/basic/insert_teeth/get_default_radial_image()
 	return image(/obj/item/natural/teeth)
 
 /datum/surgery_operation/basic/insert_teeth/all_required_strings()
-	return list("patient needs to be missing teeth") + ..()
+	. = ..()
+	. += "patient must be missing teeth"
 
 /datum/surgery_operation/basic/insert_teeth/state_check(mob/living/patient)
 	var/obj/item/bodypart/mouth/mouth = patient.get_bodypart(BODY_ZONE_PRECISE_MOUTH)
@@ -26,7 +27,6 @@
 		return FALSE
 
 	return (mouth.get_teeth_amount() < mouth.max_teeth)
-
 
 /datum/surgery_operation/basic/insert_teeth/on_preop(mob/living/patient, mob/living/surgeon, tool, list/operation_args)
 	display_results(

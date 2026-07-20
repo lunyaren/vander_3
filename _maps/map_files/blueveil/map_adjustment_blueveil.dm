@@ -10,7 +10,6 @@
 	)
 	// Limited positions to ensure core roles are filled.
 	slot_adjust = list(
-
 		/datum/job/lord = 1,
 		/datum/job/consort = 1,
 		/datum/job/hand = 1,
@@ -82,9 +81,6 @@
 		/datum/job/pilgrim = 2,
 		/datum/job/adventurer = 3,
 		/datum/job/mercenary = 3,
-		/datum/job/bandit = 2,
-
-
 	)
 
 	ages_adjust = list(
