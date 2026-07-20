@@ -4381,6 +4381,7 @@
 #include "code\modules\tgui_panel\telemetry.dm"
 #include "code\modules\tgui_panel\tgui_panel.dm"
 #include "code\modules\tooltip\tooltip.dm"
+#include "code\modules\translation\translation.dm"
 #include "code\modules\underworld\underworld.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\visual_ui\_base.dm"
