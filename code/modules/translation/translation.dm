@@ -115,6 +115,22 @@
 		log_message("(TRANSLATED) me: [english]", LOG_EMOTE)
 	emote("me", message_type, spanish || message, intentional = TRUE)
 
+/**
+ * Async handler for the RECEIVER side. When a listener has translation enabled,
+ * the message they hear is translated to English and shown to them, so they can
+ * read incoming Spanish speech/emotes in English.
+ */
+/mob/proc/handle_translated_hear(raw_message, atom/movable/speaker)
+	set waitfor = FALSE
+	if(!length(raw_message))
+		return
+	var/english = external_translate(raw_message, TRANSLATE_LANG_LOG)
+	if(QDELETED(src) || !client)
+		return
+	if(!length(english) || english == raw_message)
+		return
+	to_chat(src, span_notice("<i>[speaker]: [english]</i>"))
+
 #undef TRANSLATE_API_URL
 #undef TRANSLATE_TIMEOUT
 #undef TRANSLATE_LANG_DISPLAY
