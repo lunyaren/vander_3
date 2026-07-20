@@ -120,7 +120,7 @@
  * the message they hear is translated to English and shown to them, so they can
  * read incoming Spanish speech/emotes in English.
  */
-/mob/proc/handle_translated_hear(raw_message, atom/movable/speaker)
+/mob/proc/handle_translated_hear(raw_message, atom/movable/speaker, is_emote = FALSE)
 	set waitfor = FALSE
 	if(!length(raw_message))
 		return
@@ -130,6 +130,10 @@
 	if(!length(english) || english == raw_message)
 		return
 	to_chat(src, span_notice("<i>[speaker]: [english]</i>"))
+	if(is_emote)
+		log_message("(TRANSLATED) emote [key_name(speaker)]: [english]", LOG_EMOTE, log_globally = FALSE)
+	else
+		log_message("(TRANSLATED) heard [key_name(speaker)]: [english]", LOG_SAY, log_globally = FALSE)
 
 #undef TRANSLATE_API_URL
 #undef TRANSLATE_TIMEOUT

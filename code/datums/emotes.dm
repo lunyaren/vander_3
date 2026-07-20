@@ -86,8 +86,10 @@
 	if(!msg && nomsg == FALSE)
 		return
 
+	var/translate_content
 	if(!nomsg)
 		user.log_message(msg, LOG_EMOTE)
+		translate_content = msg
 		msg = "<b>[user]</b> " + msg
 
 	var/pitch = 1 //bespoke vary system so deep voice/high voiced humans
@@ -115,10 +117,20 @@
 		var/runechat_msg_to_use = null
 		if(show_runechat && !(emote_type & EMOTE_AUDIBLE))
 			runechat_msg_to_use = runechat_msg ? runechat_msg : raw_msg
-		if(emote_type & EMOTE_AUDIBLE)
+		var/audible_emote = (emote_type & EMOTE_AUDIBLE)
+		if(audible_emote)
 			user.audible_message(msg, runechat_message = runechat_msg_to_use)
 		else
 			user.visible_message(msg, runechat_message = runechat_msg_to_use)
+		// Receiver-side translation: players with the translator on read incoming emotes in English.
+		// Emotes whose text begins with "*" are never translated.
+		if(length(translate_content) && copytext(translate_content, 1, 2) != "*")
+			for(var/mob/M in get_hearers_in_view(DEFAULT_MESSAGE_RANGE, user))
+				if(M == user || !M.client?.translate_chat_enabled)
+					continue
+				if(audible_emote ? !M.can_hear() : M.is_blind())
+					continue
+				M.handle_translated_hear(translate_content, user, TRUE)
 
 	// SEND_SIGNAL(user, COMSIG_MOB_EMOTE, src, key, type_override, message, intentional)
 	// SEND_SIGNAL(user, COMSIG_MOB_EMOTED(key))

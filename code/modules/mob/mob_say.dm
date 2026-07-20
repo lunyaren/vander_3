@@ -17,7 +17,7 @@
 		return
 	if(message)
 		set_typing_indicator(FALSE)
-		if(client?.translate_chat_enabled)
+		if(client?.translate_chat_enabled && copytext(message, 1, 2) != "*")
 			handle_translated_say(message)
 			return
 		say(message)
@@ -60,7 +60,7 @@
 		return
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	message = parsemarkdown_basic(message, limited = TRUE, barebones = TRUE)
-	if(client?.translate_chat_enabled)
+	if(client?.translate_chat_enabled && copytext(message, 1, 2) != "*")
 		handle_translated_me(message, NONE)
 		return
 	usr.emote("me", NONE, message, intentional = TRUE)
@@ -87,7 +87,7 @@
 		return
 	message = trim(copytext_char(html_encode(message), 1, MAX_MESSAGE_BIGME))
 	message = parsemarkdown_basic(message, limited = TRUE, barebones = TRUE)
-	if(client?.translate_chat_enabled)
+	if(client?.translate_chat_enabled && copytext(message, 1, 2) != "*")
 		handle_translated_me(message, 1)
 		return
 	usr.emote("me", 1, message, TRUE)
