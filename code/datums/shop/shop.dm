@@ -119,10 +119,10 @@
 		slot++
 
 	if(length(player.prefs.single_round_loadout) || length(player.prefs.single_round_loadout_colors))
-			player.prefs.single_round_loadout = list()
-			player.prefs.single_round_loadout_colors = list()
-			player.prefs.save_preferences()
-			player.prefs.save_character()
+		player.prefs.single_round_loadout = list()
+		player.prefs.single_round_loadout_colors = list()
+		player.prefs.save_preferences()
+		player.prefs.save_character()
 
 /proc/apply_item_colors(obj/item/spawned_item, datum/mind/mind)
 	if(!spawned_item || !mind?.loadout_item_colors)
