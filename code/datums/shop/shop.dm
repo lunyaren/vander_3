@@ -655,8 +655,8 @@
 
 	owner.prefs.single_round_loadout += path_str
 	owner.prefs.save_preferences()
-	log_game("TRIUMPH SHOP: [owner.ckey] "rented" [path_str] "for one round ([CEILING(item.triumph_cost_permanent * 0.05, 1)] triumphs)".")
-	to_chat(owner.mob, span_notice("[donator_free_use ? "Trying out [item.name] for this round (Patreon perk, no cost)." : "Rented [item.name] for this round."]"))
+	log_game("TRIUMPH SHOP: [owner.ckey] rented [path_str] for one round ([CEILING(item.triumph_cost_permanent * 0.05, 1)] triumphs).")
+	to_chat(owner.mob, span_notice("Rented [item.name] for this round."))
 	return TRUE
 
 /datum/tgui_triumph_shop/proc/handle_equip(path_str)
