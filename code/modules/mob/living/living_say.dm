@@ -244,7 +244,7 @@
 			log_message("heard [key_name(living_speaker)] say: [raw_message]", LOG_SAY, "#0978b8", FALSE)
 
 	show_message(message, MSG_AUDIBLE, deaf_message, deaf_type)
-	if(client?.translate_chat_enabled && speaker != src && can_hear())
+	if(client?.translate_chat_enabled && speaker != src && !HAS_TRAIT(src, TRAIT_DEAF))
 		handle_translated_hear(raw_message, speaker)
 	return message
 

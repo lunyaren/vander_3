@@ -587,7 +587,7 @@
 		"type" = t.ticket_type,
 	))
 	owner.prefs.save_preferences()
-
+	owner.prefs.save_character()
 	log_game("TRIUMPH SHOP: [owner.ckey] converted [amount] triumphs into a triumph ticket.")
 	to_chat(owner.mob, span_notice("Converted <b>[amount] triumphs</b> into a tradeable ticket!"))
 	return TRUE
@@ -615,6 +615,7 @@
 		adjust_triumphs(owner, -item.triumph_cost_permanent, TRUE, "Triumph Shop: permanent unlock [item.name]", FALSE, TRUE)
 	owner.prefs.owned_loadout_items += path_str
 	owner.prefs.save_preferences()
+	owner.prefs.save_character()
 	log_game("TRIUMPH SHOP: [owner.ckey] permanently unlocked [path_str] for [item.triumph_cost_permanent] triumphs.")
 	to_chat(owner.mob, span_notice("Permanently unlocked [item.name]!"))
 	if(item.triumph_cost_permanent)
@@ -655,6 +656,7 @@
 
 	owner.prefs.single_round_loadout += path_str
 	owner.prefs.save_preferences()
+	owner.prefs.save_character()
 	log_game("TRIUMPH SHOP: [owner.ckey] rented [path_str] for one round ([CEILING(item.triumph_cost_permanent * 0.05, 1)] triumphs).")
 	to_chat(owner.mob, span_notice("Rented [item.name] for this round."))
 	return TRUE
@@ -740,6 +742,7 @@
 	adjust_triumphs(owner, -cost, TRUE, "Triumph Shop: specific special [path_str]", FALSE, TRUE)
 	owner.prefs.next_special_trait = trait_type
 	owner.prefs.save_preferences()
+	owner.prefs.save_character()
 	print_special_text(owner, owner.prefs.next_special_trait)
 	owner.mob.playsound_local(owner.mob, 'sound/misc/alert.ogg', 100)
 	log_game("TRIUMPH SHOP: [owner.ckey] purchased specific special [path_str] ([trait?.name]) for [cost] triumphs.")
