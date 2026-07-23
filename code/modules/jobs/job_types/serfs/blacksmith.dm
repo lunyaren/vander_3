@@ -8,13 +8,20 @@
 		/datum/attribute/skill/misc/athletics = 30,
 		/datum/attribute/skill/combat/wrestling = 10,
 		/datum/attribute/skill/combat/unarmed = 20,
-		/datum/attribute/skill/craft/crafting = 30,
+		/datum/attribute/skill/labor/mining = 40,
+		/datum/attribute/skill/craft/crafting = 40,
+		/datum/attribute/skill/craft/masonry = 30,
+		/datum/attribute/skill/craft/engineering = 40,
 		/datum/attribute/skill/craft/blacksmithing = 40,
 		/datum/attribute/skill/craft/armorsmithing = 30,
 		/datum/attribute/skill/craft/weaponsmithing = 30,
-		/datum/attribute/skill/craft/smelting = 30,
-		/datum/attribute/skill/craft/engineering = 30,
+		/datum/attribute/skill/craft/smelting = 40,
 		/datum/attribute/skill/craft/traps = 20,
+		/datum/attribute/skill/craft/bombs = 30,
+		/datum/attribute/skill/misc/lockpicking = 30,
+		/datum/attribute/skill/misc/swimming = 10,
+		/datum/attribute/skill/misc/climbing = 20,
+		/datum/attribute/skill/misc/medicine = 10,
 		/datum/attribute/skill/misc/reading = 20,
 		/datum/attribute/skill/labor/mathematics = 20,
 	)
@@ -28,6 +35,7 @@
 
 /datum/job/blacksmith
 	title = JOB_BLACKSMITH
+	alt_titles = list("Goldsmith", "Greensmith", "Silversmith", "Whitesmith", "Tinsmith", "Weaponsmith", "Armoursmith")
 	tutorial = "You studied for many decades under your master with a few other apprentices to become an Blacksmith, \
 	a trade that certainly has seen a boom in revenue in recent times with many a bannerlord \
 	seeing the importance in maintaining a well-equipped army."
@@ -42,6 +50,7 @@
 	outfit = /datum/outfit/blacksmith
 	display_order = JDO_BLACKSMITH
 	give_bank_account = 30
+	knows_the_town = TRUE
 	cmode_music = 'sound/music/cmode/towner/CombatTowner2.ogg'
 
 	job_bitflag = BITFLAG_CONSTRUCTOR

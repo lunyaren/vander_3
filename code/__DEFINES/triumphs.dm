@@ -64,11 +64,13 @@
 
 #define TRIUMPH_BUY_SUBTERRAN_DWARF "subterran_dwarf"
 #define TRIUMPH_BUY_FORMIKRAG_KOBOLD "formikrag_kobold"
+#define TRIUMPH_BUY_SNOW_ELF "snow_elf"
+#define TRIUMPH_BUY_HALF_SNOW_ELF "half_snow_elf"
 
 // Bought triumph buys category
 #define TRIUMPH_CAT_ACTIVE_DATUMS "Bought"
 
 /// Cost to roll a random eligible special trait
-#define TRIUMPH_COST_RANDOM_SPECIAL 10
+#define TRIUMPH_COST_RANDOM_SPECIAL 5
 /// Triumph cost per expected roll when picking a specific special (independent of random roll cost)
 #define TRIUMPH_COST_SPECIFIC_SPECIAL_UNIT 0.5

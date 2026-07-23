@@ -12,16 +12,22 @@
 		/datum/attribute/skill/labor/mining = 40,
 		/datum/attribute/skill/combat/wrestling = 10,
 		/datum/attribute/skill/combat/unarmed = 20,
-		/datum/attribute/skill/craft/crafting = 20,
+		/datum/attribute/skill/craft/crafting = 40,
+		/datum/attribute/skill/craft/masonry = 30,
+		/datum/attribute/skill/craft/engineering = 40,
+		/datum/attribute/skill/craft/blacksmithing = 40,
+		/datum/attribute/skill/craft/armorsmithing = 30,
+		/datum/attribute/skill/craft/weaponsmithing = 30,
+		/datum/attribute/skill/craft/smelting = 40,
+		/datum/attribute/skill/craft/traps = 20,
+		/datum/attribute/skill/craft/bombs = 30,
+		/datum/attribute/skill/misc/lockpicking = 30,
 		/datum/attribute/skill/misc/swimming = 10,
 		/datum/attribute/skill/misc/climbing = 20,
 		/datum/attribute/skill/misc/medicine = 10,
 		/datum/attribute/skill/misc/athletics = 30,
-		/datum/attribute/skill/craft/traps = 10,
-		/datum/attribute/skill/craft/engineering = 20,
-		/datum/attribute/skill/craft/blacksmithing = 10,
-		/datum/attribute/skill/craft/smelting = 20,
-		/datum/attribute/skill/misc/reading = 10
+		/datum/attribute/skill/misc/reading = 20,
+		/datum/attribute/skill/labor/mathematics = 20
 	)
 
 /datum/job/miner
@@ -40,6 +46,7 @@
 
 	outfit = /datum/outfit/miner
 	give_bank_account = 6
+	knows_the_town = TRUE
 	cmode_music = 'sound/music/cmode/towner/CombatTowner2.ogg'
 	can_be_apprentice = TRUE
 
